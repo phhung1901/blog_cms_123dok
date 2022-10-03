@@ -1,11 +1,13 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Validator;
 
-class MainController extends Controller
+class UserController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,9 +16,7 @@ class MainController extends Controller
      */
     public function index()
     {
-        return view("admin.pages.dashboard", [
-            "title" => "Dashboard"
-        ]);
+
     }
 
     /**
@@ -26,7 +26,13 @@ class MainController extends Controller
      */
     public function create()
     {
-        //
+        if (!Auth::check()){
+            return view("admin.auth.register", [
+                "title" => "Đăng ký"
+            ]);
+        }else{
+            return redirect()->back();
+        }
     }
 
     /**
@@ -37,7 +43,26 @@ class MainController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validate = Validator::make($request->all(), [
+            "name" => "required",
+            "email" => "required|email",
+            "password" => "required|min:6|max:100|confirmed",
+            "password_confirmation" => "required|same:password"
+        ]);
+
+        if (!$validate->fails()){
+            $user = new User();
+            $user->name = $request->get("name");
+            $user->email = $request->get("email");
+            $user->password = bcrypt($request->get("password"));
+            $user->role = "1";
+            $user->save();
+
+            return redirect()->route("admin.dashboard.view");
+        }else{
+            $data = $request->all();
+            return redirect()->back()->with("error", "Pls, check register")->with(['data' => $data]);
+        }
     }
 
     /**
@@ -48,7 +73,7 @@ class MainController extends Controller
      */
     public function show($id)
     {
-        //
+
     }
 
     /**

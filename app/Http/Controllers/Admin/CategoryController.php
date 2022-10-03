@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-class MainController extends Controller
+class CategoryController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,9 +14,7 @@ class MainController extends Controller
      */
     public function index()
     {
-        return view("admin.pages.dashboard", [
-            "title" => "Dashboard"
-        ]);
+
     }
 
     /**
@@ -26,7 +24,9 @@ class MainController extends Controller
      */
     public function create()
     {
-        //
+        return view("admin.pages.category_form", [
+            "title" => "Category"
+        ]);
     }
 
     /**

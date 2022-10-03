@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-class MainController extends Controller
+class PostController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,8 +14,12 @@ class MainController extends Controller
      */
     public function index()
     {
-        return view("admin.pages.dashboard", [
-            "title" => "Dashboard"
+
+    }
+
+    public function societyPost(){
+        return view("client.pages.xahoi", [
+            "title" => "Xã hội"
         ]);
     }
 
@@ -46,9 +50,11 @@ class MainController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show()
     {
-        //
+        return view("client.pages.detail", [
+            'title' => "Chi tiết"
+        ]);
     }
 
     /**

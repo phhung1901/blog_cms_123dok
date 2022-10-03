@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-class MainController extends Controller
+class HomeController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,8 +14,8 @@ class MainController extends Controller
      */
     public function index()
     {
-        return view("admin.pages.dashboard", [
-            "title" => "Dashboard"
+        return view("client.pages.home", [
+            "title" => "Home"
         ]);
     }
 

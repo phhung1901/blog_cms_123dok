@@ -3,6 +3,10 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\LoginController;
 use App\Http\Controllers\Admin\MainController;
+use App\Http\Controllers\User\PostController;
+use App\Http\Controllers\User\HomeController;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\Admin\CategoryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,11 +25,20 @@ Route::prefix('admin')->group(function (){
     Route::get("/", [LoginController::class, "index"])->name("admin.login.view");
     Route::post('/login', [LoginController::class, "store"])->name("admin.login.submit");
 
+    //Register
+    Route::get("/register", [UserController::class, "create"])->name("admin.register.view");
+    Route::post("/register/submit", [UserController::class, "store"])->name("admin.register.submit");
+
 
     //Main
     Route::middleware(['auth'])->group(function (){
         //Dashboard
         Route::get("/dashboard", [MainController::class, "index"])->name('admin.dashboard.view');
+
+        //Category
+        Route::prefix("/category")->group(function (){
+            Route::get("/form", [CategoryController::class, "create"])->name("admin.category.create");
+        });
 
         //Logout
         Route::get("/logout", [LoginController::class, "destroy"])->name("admin.logout");
@@ -33,9 +46,13 @@ Route::prefix('admin')->group(function (){
 });
 
 //User
-//Route::prefix('/')->group(function (){
-//    //Login
-//    Route::get()->name("user.login.view");
+Route::prefix('/')->group(function (){
+    //Login
+    Route::get("/", [HomeController::class, "index"])->name("user.login.view");
+
+    Route::get("/society", [PostController::class, "societyPost"])->name("user.society.view");
+
+    Route::get("/detail", [PostController::class, "show"])->name("user.detail.view");
 //    Route::post()->name("user.login.submit);
-//
-//});
+
+});
