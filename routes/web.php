@@ -37,7 +37,10 @@ Route::prefix('admin')->group(function (){
 
         //Category
         Route::prefix("/category")->group(function (){
+            Route::get("/table", [CategoryController::class, "index"])->name("admin.category.view");
             Route::get("/form", [CategoryController::class, "create"])->name("admin.category.create");
+            Route::post("/form/submit", [CategoryController::class, "store"])->name("admin.category.store");
+            Route::get("/action/delete/{id}", [CategoryController::class, "destroy"])->name("admin.category.destroy");
         });
 
         //Logout

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Services\Admin\User\UserService;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -9,6 +10,14 @@ use Illuminate\Support\Facades\Validator;
 
 class UserController extends Controller
 {
+
+    protected $userService;
+
+    public function __construct(UserService $userService)
+    {
+        $this->userService = $userService;
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -51,12 +60,7 @@ class UserController extends Controller
         ]);
 
         if (!$validate->fails()){
-            $user = new User();
-            $user->name = $request->get("name");
-            $user->email = $request->get("email");
-            $user->password = bcrypt($request->get("password"));
-            $user->role = "1";
-            $user->save();
+            $this->userService->addUser($request);
 
             return redirect()->route("admin.dashboard.view");
         }else{

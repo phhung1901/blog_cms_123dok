@@ -3,85 +3,90 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Services\Admin\Category\CategoryService;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class CategoryController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
 
+    protected $categoryService;
+
+    public function __construct(CategoryService $categoryService)
+    {
+        $this->categoryService = $categoryService;
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
+
+    public function index()
     {
-        return view("admin.pages.category_form", [
-            "title" => "Category"
+        $categories = $this->categoryService->getCategory();
+
+        return view("admin.pages.category_table", [
+            "title" => "Category",
+            "categories" => $categories
         ]);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
+    public function create()
     {
-        //
+        $categories = $this->categoryService->getCategory();
+
+        return view("admin.pages.category_form", [
+            "title" => "Category",
+            "categories" => $categories
+        ]);
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+
+    public function store(Request $request)
+    {
+        $validate = Validator::make($request->all(), [
+            'category_name' => 'required',
+            'slug' => 'required',
+            'description' => "required|min:6"
+        ]);
+
+        if (!$validate->fails()){
+            $this->categoryService->addCategory($request);
+        }else{
+            return redirect()->back()->with("error", "Pls check form input!");
+        }
+
+        return redirect()->route("admin.category.view");
+    }
+
+
     public function show($id)
     {
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+
     public function edit($id)
     {
         //
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+
     public function update(Request $request, $id)
     {
         //
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+
     public function destroy($id)
     {
-        //
+        if (count($this->categoryService->getChildCategory($id)) != 0){
+            $child = $this->categoryService->getChildCategory($id);
+
+            foreach ($child as $item){
+                $this->destroy($item->id);
+                $this->categoryService->delete($item->id);
+            }
+            $this->categoryService->delete($id);
+
+        }
+        return redirect()->back();
     }
 }
