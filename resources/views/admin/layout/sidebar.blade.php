@@ -45,28 +45,7 @@
                                 <p>Dashboard v1</p>
                             </a>
                         </li>
-                        <li class="nav-item">
-                            <a href="./index2.html" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Dashboard v2</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="./index3.html" class="nav-link active">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Dashboard v3</p>
-                            </a>
-                        </li>
                     </ul>
-                </li>
-                <li class="nav-item">
-                    <a href="pages/widgets.html" class="nav-link">
-                        <i class="nav-icon fas fa-th"></i>
-                        <p>
-                            Widgets
-                            <span class="right badge badge-danger">New</span>
-                        </p>
-                    </a>
                 </li>
                 <li class="nav-item">
                     <a href="#" class="nav-link">
@@ -125,15 +104,44 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="pages/forms/editors.html" class="nav-link">
+                            <a href="{{route("admin.role.create")}}" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
-                                <p>Editors</p>
+                                <p>Roles</p>
                             </a>
                         </li>
                         <li class="nav-item">
                             <a href="pages/forms/validation.html" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Validation</p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <i class="nav-icon fas fa-user"></i>
+                        <p>
+                            User
+                            <i class="right fas fa-angle-left"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="{{route("admin.tag.view")}}" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>User list</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{route("admin.role.view")}}" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Role</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="pages/charts/inline.html" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Permissions</p>
                             </a>
                         </li>
                     </ul>

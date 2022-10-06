@@ -8,6 +8,7 @@ use App\Http\Controllers\User\HomeController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\TagController;
+use App\Http\Controllers\RoleController;
 
 /*
 |--------------------------------------------------------------------------
@@ -54,6 +55,16 @@ Route::prefix('admin')->group(function (){
             Route::get("/action/delete/{id}", [TagController::class, "destroy"])->name("admin.tag.destroy");
             Route::get("/action/update/{id}", [TagController::class, "edit"])->name("admin.tag.edit");
             Route::post("/form/update/{id}", [TagController::class, "update"])->name("admin.tag.update");
+        });
+
+        //Role
+        Route::prefix("/role")->group(function (){
+            Route::get("/form", [RoleController::class, "create"])->name("admin.role.create");
+            Route::post("/form/submit", [RoleController::class, "store"])->name("admin.role.store");
+            Route::get("/table", [RoleController::class, "index"])->name("admin.role.view");
+            Route::get("/action/delete/{id}", [RoleController::class, "destroy"])->name("admin.role.destroy");
+            Route::get("/action/update/{id}", [RoleController::class, "edit"])->name("admin.role.edit");
+            Route::post("/form/update/{id}", [RoleController::class, "update"])->name("admin.role.update");
         });
 
         //Logout
