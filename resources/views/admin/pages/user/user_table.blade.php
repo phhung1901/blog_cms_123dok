@@ -15,7 +15,7 @@
                             </style>
                             <div style="display: flex; flex-direction: row; justify-content: space-between; align-items: center" class="card-header">
                                 <h3 class="card-title"><b>Role</b></h3>
-                                <a href="{{route("admin.role.create")}}"><div class="btn btn-success">Add</div></a>
+                                <a href=""><div class="btn btn-success">Add</div></a>
                             </div>
                             <div class="card-body">
                                 <div id="example2_wrapper" class="dataTables_wrapper dt-bootstrap4">
@@ -33,25 +33,23 @@
                                                     <th class="sorting" tabindex="0"
                                                         aria-controls="example2" rowspan="1" colspan="1"
                                                         aria-label="Rendering engine: activate to sort column descending"
-                                                        aria-sort="ascending">Role
+                                                        aria-sort="ascending">Name
                                                     </th>
                                                     <th class="sorting" tabindex="0" aria-controls="example2"
                                                         rowspan="1" colspan="1"
-                                                        aria-label="Browser: activate to sort column ascending">User
-                                                    </th>
+                                                        aria-label="Browser: activate to sort column ascending">Email                                                    </th>
                                                     <th class="sorting" tabindex="0" aria-controls="example2"
                                                         rowspan="1" colspan="1"
-                                                        aria-label="Browser: activate to sort column ascending">Permissions
+                                                        aria-label="Browser: activate to sort column ascending">Created_at
                                                     </th>
                                                     <th class="sorting" tabindex="0" aria-controls="example2"
                                                         rowspan="1" colspan="1"
                                                         aria-label="Engine version: activate to sort column ascending">
-                                                        Created at
+                                                        Updated_at
                                                     </th>
                                                     <th class="sorting" tabindex="0" aria-controls="example2"
                                                         rowspan="1" colspan="1"
-                                                        aria-label="CSS grade: activate to sort column ascending">Update
-                                                        at
+                                                        aria-label="CSS grade: activate to sort column ascending">Role
                                                     </th>
                                                     <th class="sorting" tabindex="0" aria-controls="example2"
                                                         rowspan="1" colspan="0"
@@ -60,17 +58,17 @@
                                                 </tr>
                                                 </thead>
                                                 <tbody>
-                                                @if(isset($roles))
-                                                    @foreach($roles as $role)
+                                                @if(isset($users))
+                                                    @foreach($users as $user)
                                                         <tr class="odd">
-                                                            <td class="dtr-control sorting_1" tabindex="0">{{$role["name"]}}</td>
-                                                            <td>{{count(\App\Models\User::role($role["name"])->get())}}</td>
+                                                            <td class="dtr-control sorting_1" tabindex="0">{{$user["name"]}}</td>
+                                                            <td>{{$user["email"]}}</td>
+                                                            <td>{{$user["created_at"]}}</td>
+                                                            <td>{{$user["updated_at"]}}</td>
                                                             <td>    </td>
-                                                            <td>{{$role["created_at"]}}</td>
-                                                            <td>{{$role["updated_at"]}}</td>
                                                             <td>
-                                                                <a onclick="return confirm('Bạn có muốn xóa ?')" href="{{route("admin.tag.destroy", [$role["id"]])}}"><div id="category_destroy" class="btn btn-danger">Delete</div></a>
-                                                                <a href="{{route("admin.tag.edit", [$role["id"]])}}"><div class="btn btn-primary">Update</div></a>
+                                                                <a onclick="return confirm('Bạn có muốn xóa ?')" href=""><div id="category_destroy" class="btn btn-danger">Delete</div></a>
+                                                                <a href=""><div class="btn btn-primary">Update</div></a>
                                                             </td>
                                                         </tr>
                                                     @endforeach

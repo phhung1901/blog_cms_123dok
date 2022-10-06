@@ -22,7 +22,8 @@ class UserController extends Controller
     {
         $users = $this->userService->getUser();
 
-        return view("admin.pages.user_table", [
+
+        return view("admin.pages.user.user_table", [
             "title" => "User",
             "users" => $users
         ]);

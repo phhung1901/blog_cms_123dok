@@ -109,6 +109,8 @@ class CategoryController extends Controller
             }
             $this->categoryService->delete($id);
 
+        }else{
+            $this->categoryService->delete($id);
         }
         return redirect()->back();
     }

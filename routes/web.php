@@ -67,6 +67,11 @@ Route::prefix('admin')->group(function (){
             Route::post("/form/update/{id}", [RoleController::class, "update"])->name("admin.role.update");
         });
 
+        //User
+        Route::prefix("/user")->group(function (){
+            Route::get("/table", [UserController::class, "index"])->name("admin.user.view");
+        });
+
         //Logout
         Route::get("/logout", [LoginController::class, "destroy"])->name("admin.logout");
     });
