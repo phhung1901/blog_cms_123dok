@@ -65,13 +65,36 @@ class CategoryController extends Controller
 
     public function edit($id)
     {
-        //
+        if (count($this->categoryService->getEdit($id)) != 0){
+            $category = $this->categoryService->getEdit($id);
+            $category = $category[0];
+            $categories = $this->categoryService->getCategory();
+        }else{
+            return redirect()->back();
+        }
+
+        return view("admin.pages.category_update", [
+            "title" => "Category",
+            "category" => $category,
+            "categories" => $categories
+        ]);
     }
 
 
     public function update(Request $request, $id)
     {
-        //
+        $validate = Validator::make($request->all(), [
+            'category_name' => 'required',
+            'slug' => 'required',
+            'description' => "required|min:6"
+        ]);
+
+        if (!$validate->fails()){
+            $this->categoryService->update($request, $id);
+        }else{
+            return redirect()->back()->with("error", "Pls check form input!");
+        }
+        return redirect()->route("admin.category.view");
     }
 
 

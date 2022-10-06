@@ -78,7 +78,7 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="pages/charts/chartjs.html" class="nav-link">
+                            <a href="{{route("admin.tag.view")}}" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Tag</p>
                             </a>
@@ -119,9 +119,9 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="pages/forms/advanced.html" class="nav-link">
+                            <a href="{{route("admin.tag.create")}}" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
-                                <p>Advanced Elements</p>
+                                <p>Tag</p>
                             </a>
                         </li>
                         <li class="nav-item">
