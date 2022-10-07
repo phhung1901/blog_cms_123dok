@@ -14,17 +14,15 @@ return new class extends Migration
     public function up()
     {
         Schema::create('posts', function (Blueprint $table) {
-            $table->id()->index();
-            $table->string("title")->nullable();
-            $table->string("slug")->nullable()->index();
-            $table->text("content");
-            $table->string("images")->nullable();
+            $table->id();
+            $table->string("title");
+            $table->string("slug")->index();
+            $table->longText("content");
+            $table->string("thumbnail")->nullable();
             $table->unsignedBigInteger("category_id")->index();
             $table->unsignedBigInteger("author_id")->index();
             $table->string("status")->index();
             $table->timestamps();
-            $table->foreign("category_id")->references("id")->on("categories");
-            $table->foreign("author_id")->references("id")->on("users");
         });
     }
 
