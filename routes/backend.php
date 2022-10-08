@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\LoginController;
 
 Route::prefix('admin')
@@ -11,11 +12,7 @@ Route::prefix('admin')
         Route::middleware('auth_admin:backend')
             ->group(function () {
 
-                Route::get('', function () {
-                    dd('ok');
-                })->name('admin.dashboard');
-
-
+                Route::get('', [DashboardController::class, 'index'])->name('admin.dashboard.index');
 
             });
     });
