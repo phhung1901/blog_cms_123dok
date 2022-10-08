@@ -12,23 +12,13 @@ class Category extends Model
 
     protected $table = 'categories';
 
-    protected $fillable = [
-        'id',
-        'parent_id',
-        'name',
-        'slug',
-        'description'
-    ];
+    protected $guarded = ['id'];
 
-    protected $guarded = [];
-
-    public function categories(): HasMany
-    {
-        return $this->hasMany(Category::class, "parent_id");
+    public function parent() {
+        return $this->belongsTo(Category::class, 'parent_id');
     }
 
-    public function allCategories(): HasMany
-    {
-        return $this->categories()->with("allCategories");
+    public function children() {
+        return $this->hasMany(Category::class, 'parent_id');
     }
 }
