@@ -23,6 +23,10 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        if ($this->app->runningInConsole()) {
+            \Log::setDefaultDriver('daily_cli');
+        } else {
+            \Log::setDefaultDriver('daily');
+        }
     }
 }

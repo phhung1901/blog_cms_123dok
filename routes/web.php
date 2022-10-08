@@ -88,3 +88,7 @@ Route::prefix('/')->group(function (){
 //    Route::post()->name("user.login.submit);
 
 });
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
