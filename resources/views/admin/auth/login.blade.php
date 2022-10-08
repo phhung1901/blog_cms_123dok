@@ -14,7 +14,7 @@
 {{--                        {!! \Session::get('error') !!}--}}
 {{--                    </div>--}}
 {{--                @endif--}}
-                <form action="#" method="post">
+                <form action="{{route('admin.auth.login')}}" method="post">
                     @csrf
                     <div class="input-group mb-3">
                         <input type="email" name="email" class="form-control" placeholder="Email" value="{{old('email')}}">

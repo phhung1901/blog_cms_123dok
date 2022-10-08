@@ -6,10 +6,18 @@ Route::prefix('admin')
     ->group(function () {
 
         Route::group([], function () {
-           Route::get('login', [LoginController::class, 'showLoginForm']);
+           Route::get('login', [LoginController::class, 'showLoginForm'])->name('admin.auth.login');
+           Route::post('login', [LoginController::class, 'login']);
         });
 
-        Route::get('', function () {
-           dd('ok');
-        });
+        Route::middleware('auth_admin:backend')
+            ->group(function () {
+
+                Route::get('', function () {
+                    dd('ok');
+                })->name('admin.dashboard');
+
+
+
+            });
     });
