@@ -3,109 +3,59 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\c;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Validator;
+use Illuminate\Foundation\Auth\AuthenticatesUsers;
 
 class LoginController extends Controller
 {
+    /*
+    |--------------------------------------------------------------------------
+    | Login Controller
+    |--------------------------------------------------------------------------
+    |
+    | This controller handles authenticating users for the application and
+    | redirecting them to your home screen. The controller uses a trait
+    | to conveniently provide its functionality to your applications.
+    |
+    */
+
+    use AuthenticatesUsers;
+
     /**
-     * Display a listing of the resource.
+     * Where to redirect users after login.
      *
-     * @return \Illuminate\Http\Response
+     * @var string
      */
-    public function index()
+    protected $redirectTo = '/admin';
+
+    protected $redirectAfterLogout = '/admin/login';
+
+    /**
+     * Create a new authentication controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
     {
-        if (! Auth::check()){
-            return view("admin.auth.login" ,[
-                "title" => "Admin Login",
-            ]);
-        }else{
-            return redirect()->back();
-        }
+        $this->middleware('guest:backend', ['except' => 'logout']);
+    }
+
+    public function getGuard()
+    {
+        return 'backend';
+    }
+
+    protected function guard()
+    {
+        return \Auth::guard('backend');
     }
 
     /**
-     * Show the form for creating a new resource.
-     *login
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
+     * Show the application's login form.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\View\View
      */
-    public function store(Request $request)
+    public function showLoginForm()
     {
-        $validate = Validator::make($request->all(), [
-           'email' => 'required|email',
-            'password' => 'required|min:6'
-        ]);
-
-        if (!$validate->fails()){
-            if (Auth::attempt([
-                'email' => $request->input('email'),
-                'password' => $request->input('password')
-            ])){
-                return redirect()->route("admin.dashboard.view");
-            }else{
-                return redirect()->back()->with('error', 'Pls, login agian!');
-            }
-        }else{
-            return redirect()->route("admin.login.view")->with('error', 'Pls, check input login!');
-        }
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\c  $c
-     * @return \Illuminate\Http\Response
-     */
-    public function show(c $c)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\c  $c
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(c $c)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\c  $c
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, c $c)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\c  $c
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy()
-    {
-        Auth::logout();
-        return redirect()->route("admin.login.view");
+        return view('admin.auth.login');
     }
 }
