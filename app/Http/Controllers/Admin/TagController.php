@@ -21,7 +21,7 @@ class TagController extends Controller
     {
         $tags = $this->tagService->getTag();
 
-        return view("admin.pages.tag_table", [
+        return view("admin.pages.tag.tag_table", [
             "title" => "Tag",
             "tags" => $tags
         ]);
@@ -30,7 +30,7 @@ class TagController extends Controller
 
     public function create()
     {
-        return view("admin.pages.tag_form", [
+        return view("admin.pages.tag.tag_form", [
             "title" => "Tag"
         ]);
     }
@@ -65,7 +65,7 @@ class TagController extends Controller
         }else{
             return redirect()->back();
         }
-        return view("admin.pages.tag_update", [
+        return view("admin.pages.tag.tag_update", [
             "title" => "Tag",
             "tag" => $tag
         ]);

@@ -22,7 +22,7 @@ class CategoryController extends Controller
     {
         $categories = $this->categoryService->getCategory();
 
-        return view("admin.pages.category_table", [
+        return view("admin.pages.category.category_table", [
             "title" => "Category",
             "categories" => $categories
         ]);
@@ -32,7 +32,7 @@ class CategoryController extends Controller
     {
         $categories = $this->categoryService->getCategory();
 
-        return view("admin.pages.category_form", [
+        return view("admin.pages.category.category_form", [
             "title" => "Category",
             "categories" => $categories
         ]);
@@ -73,7 +73,7 @@ class CategoryController extends Controller
             return redirect()->back();
         }
 
-        return view("admin.pages.category_update", [
+        return view("admin.pages.category.category_update", [
             "title" => "Category",
             "category" => $category,
             "categories" => $categories

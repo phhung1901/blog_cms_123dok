@@ -21,7 +21,7 @@ class RoleController extends Controller
         $roles = $this->roleService->getRole();
         $user_roles = User::role("super-admin")->get();
 
-        return view("admin.pages.role_table", [
+        return view("admin.pages.role.role_table", [
             "title" => "Role",
             "roles" => $roles,
             "user_roles" => $user_roles
@@ -31,7 +31,7 @@ class RoleController extends Controller
 
     public function create()
     {
-        return view("admin.pages.role_form", [
+        return view("admin.pages.role.role_form", [
             "title" => "Role"
         ]);
     }
