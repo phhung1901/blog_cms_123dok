@@ -1,4 +1,4 @@
-@extends("admin.index")
+@extends("admin.dashboard.index")
 @section("admin.content")
     <div class="content-wrapper">
         <div class="container">
@@ -13,9 +13,13 @@
                                     content: none;
                                 }
                             </style>
-                            <div style="display: flex; flex-direction: row; justify-content: space-between; align-items: center" class="card-header">
+                            <div
+                                style="display: flex; flex-direction: row; justify-content: space-between; align-items: center"
+                                class="card-header">
                                 <h3 class="card-title"><b>Tag</b></h3>
-                                <a href="{{route("admin.tag.create")}}"><div class="btn btn-success">Add</div></a>
+                                <a href="{{route("admin.tag.create")}}">
+                                    <div class="btn btn-success">Add</div>
+                                </a>
                             </div>
 
                             <div class="card-body">
@@ -60,13 +64,21 @@
                                                 @if(isset($tags))
                                                     @foreach($tags as $tag)
                                                         <tr class="odd">
-                                                            <td class="dtr-control sorting_1" tabindex="0">{{$tag["name"]}}</td>
+                                                            <td class="dtr-control sorting_1"
+                                                                tabindex="0">{{$tag["name"]}}</td>
                                                             <td>{{$tag["slug"]}}</td>
                                                             <td>{{$tag["created_at"]}}</td>
                                                             <td>{{$tag["updated_at"]}}</td>
                                                             <td>
-                                                                <a onclick="return confirm('Bạn có muốn xóa ?')" href="{{route("admin.tag.destroy", [$tag["id"]])}}"><div id="category_destroy" class="btn btn-danger">Delete</div></a>
-                                                                <a href="{{route("admin.tag.edit", [$tag["id"]])}}"><div class="btn btn-primary">Update</div></a>
+                                                                <a onclick="return confirm('Bạn có muốn xóa ?')"
+                                                                   href="{{route("admin.tag.destroy", [$tag["id"]])}}">
+                                                                    <div id="category_destroy" class="btn btn-danger">
+                                                                        Delete
+                                                                    </div>
+                                                                </a>
+                                                                <a href="{{route("admin.tag.edit", [$tag["id"]])}}">
+                                                                    <div class="btn btn-primary">Update</div>
+                                                                </a>
                                                             </td>
                                                         </tr>
                                                     @endforeach

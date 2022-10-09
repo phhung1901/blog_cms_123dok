@@ -1,4 +1,4 @@
-@extends("admin.index")
+@extends("admin.dashboard.index")
 @section("admin.content")
     <div class="content-wrapper">
         <div class="container">
@@ -13,9 +13,13 @@
                                     content: none;
                                 }
                             </style>
-                            <div style="display: flex; flex-direction: row; justify-content: space-between; align-items: center" class="card-header">
+                            <div
+                                style="display: flex; flex-direction: row; justify-content: space-between; align-items: center"
+                                class="card-header">
                                 <h3 class="card-title"><b>Role</b></h3>
-                                <a href=""><div class="btn btn-success">Add</div></a>
+                                <a href="">
+                                    <div class="btn btn-success">Add</div>
+                                </a>
                             </div>
                             <div class="card-body">
                                 <div id="example2_wrapper" class="dataTables_wrapper dt-bootstrap4">
@@ -37,10 +41,12 @@
                                                     </th>
                                                     <th class="sorting" tabindex="0" aria-controls="example2"
                                                         rowspan="1" colspan="1"
-                                                        aria-label="Browser: activate to sort column ascending">Email                                                    </th>
+                                                        aria-label="Browser: activate to sort column ascending">Email
+                                                    </th>
                                                     <th class="sorting" tabindex="0" aria-controls="example2"
                                                         rowspan="1" colspan="1"
-                                                        aria-label="Browser: activate to sort column ascending">Created_at
+                                                        aria-label="Browser: activate to sort column ascending">
+                                                        Created_at
                                                     </th>
                                                     <th class="sorting" tabindex="0" aria-controls="example2"
                                                         rowspan="1" colspan="1"
@@ -61,14 +67,22 @@
                                                 @if(isset($users))
                                                     @foreach($users as $user)
                                                         <tr class="odd">
-                                                            <td class="dtr-control sorting_1" tabindex="0">{{$user["name"]}}</td>
+                                                            <td class="dtr-control sorting_1"
+                                                                tabindex="0">{{$user["name"]}}</td>
                                                             <td>{{$user["email"]}}</td>
                                                             <td>{{$user["created_at"]}}</td>
                                                             <td>{{$user["updated_at"]}}</td>
-                                                            <td>    </td>
+                                                            <td></td>
                                                             <td>
-                                                                <a onclick="return confirm('Bạn có muốn xóa ?')" href=""><div id="category_destroy" class="btn btn-danger">Delete</div></a>
-                                                                <a href=""><div class="btn btn-primary">Update</div></a>
+                                                                <a onclick="return confirm('Bạn có muốn xóa ?')"
+                                                                   href="">
+                                                                    <div id="category_destroy" class="btn btn-danger">
+                                                                        Delete
+                                                                    </div>
+                                                                </a>
+                                                                <a href="">
+                                                                    <div class="btn btn-primary">Update</div>
+                                                                </a>
                                                             </td>
                                                         </tr>
                                                     @endforeach

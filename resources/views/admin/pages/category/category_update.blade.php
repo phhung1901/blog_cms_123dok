@@ -1,4 +1,4 @@
-@extends("admin.index")
+@extends("admin.dashboard.index")
 @section("admin.content")
     <div class="content-wrapper">
 
@@ -44,22 +44,28 @@
                                                 <option value="0">Null</option>
                                                 @if(isset($categories))
                                                     @foreach($categories as $item)
-                                                        <option @if($category->parent_id == $item["id"]) {{"selected"}}@endif  value="{{$item["id"]}}">{{$item["name"]}}</option>
+                                                        <option @if($category->parent_id == $item["id"])
+                                                                    {{"selected"}}
+                                                                @endif  value="{{$item["id"]}}">{{$item["name"]}}</option>
                                                     @endforeach
                                                 @endif
                                             </select>
                                         </div>
                                         <div class="form-group">
                                             <label for="category_name">Category name</label>
-                                            <input onkeyup="ChangeToSlug();" name="category_name" value="{{$category->name}}" type="text" class="form-control" id="category_name" placeholder="Society v.v.">
+                                            <input onkeyup="ChangeToSlug();" name="category_name"
+                                                   value="{{$category->name}}" type="text" class="form-control"
+                                                   id="category_name" placeholder="Society v.v.">
                                         </div>
                                         <div class="form-group">
                                             <label for="slug">Slug</label>
-                                            <input value="{{$category->slug}}" name="slug" type="text" class="form-control" id="slug">
+                                            <input value="{{$category->slug}}" name="slug" type="text"
+                                                   class="form-control" id="slug">
                                         </div>
                                         <div class="form-group">
                                             <label for="description">Description</label>
-                                            <input value="{{$category->description}}" name="description" type="text" class="form-control" id="description" placeholder="Min length: 6">
+                                            <input value="{{$category->description}}" name="description" type="text"
+                                                   class="form-control" id="description" placeholder="Min length: 6">
                                         </div>
                                     </div>
 
@@ -78,8 +84,7 @@
         </section>
     </div>
     <script language="javascript">
-        function ChangeToSlug()
-        {
+        function ChangeToSlug() {
             var title, slug;
 
             //Lấy text từ thẻ input title

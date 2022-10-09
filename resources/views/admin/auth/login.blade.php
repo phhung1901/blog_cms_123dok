@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 
-@include("admin.layout.header")
+@include("admin.inc.head")
 
 <body class="hold-transition login-page">
 <div class="login-box">
@@ -72,7 +72,7 @@
     </div>
 </div>
 
-@include("admin.layout.footer")
+@include("admin.inc.script")
 
 </body>
 </html>

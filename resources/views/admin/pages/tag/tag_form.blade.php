@@ -1,4 +1,4 @@
-@extends("admin.index")
+@extends("admin.dashboard.index")
 @section("admin.content")
     <div class="content-wrapper">
 
@@ -39,7 +39,8 @@
                                 <div class="card-body">
                                     <div class="form-group">
                                         <label for="tag_name">Tag name</label>
-                                        <input onkeyup="ChangeToSlug();" name="tag_name" type="text" class="form-control" id="tag_name" placeholder="Society v.v.">
+                                        <input onkeyup="ChangeToSlug();" name="tag_name" type="text"
+                                               class="form-control" id="tag_name" placeholder="Society v.v.">
                                     </div>
                                     <div class="form-group">
                                         <label for="slug">Slug</label>
@@ -61,8 +62,7 @@
         </section>
     </div>
     <script language="javascript">
-        function ChangeToSlug()
-        {
+        function ChangeToSlug() {
             var title, slug;
 
             //Lấy text từ thẻ input title

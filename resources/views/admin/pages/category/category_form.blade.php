@@ -1,4 +1,4 @@
-@extends("admin.index")
+@extends("admin.dashboard.index")
 @section("admin.content")
     <div class="content-wrapper">
 
@@ -50,7 +50,8 @@
                                     </div>
                                     <div class="form-group">
                                         <label for="category_name">Category name</label>
-                                        <input onkeyup="ChangeToSlug();" name="category_name" type="text" class="form-control" id="category_name" placeholder="Society v.v.">
+                                        <input onkeyup="ChangeToSlug();" name="category_name" type="text"
+                                               class="form-control" id="category_name" placeholder="Society v.v.">
                                     </div>
                                     <div class="form-group">
                                         <label for="slug">Slug</label>
@@ -58,12 +59,13 @@
                                     </div>
                                     <div class="form-group">
                                         <label for="description">Description</label>
-                                        <input name="description" type="text" class="form-control" id="description" placeholder="Min length: 6">
+                                        <input name="description" type="text" class="form-control" id="description"
+                                               placeholder="Min length: 6">
                                     </div>
-{{--                                    <div class="form-check">--}}
-{{--                                        <input type="checkbox" class="form-check-input" id="exampleCheck1">--}}
-{{--                                        <label class="form-check-label" for="exampleCheck1">Check me out</label>--}}
-{{--                                    </div>--}}
+                                    {{--                                    <div class="form-check">--}}
+                                    {{--                                        <input type="checkbox" class="form-check-input" id="exampleCheck1">--}}
+                                    {{--                                        <label class="form-check-label" for="exampleCheck1">Check me out</label>--}}
+                                    {{--                                    </div>--}}
                                 </div>
 
                                 <div class="card-footer">
@@ -80,8 +82,7 @@
         </section>
     </div>
     <script language="javascript">
-        function ChangeToSlug()
-        {
+        function ChangeToSlug() {
             var title, slug;
 
             //Lấy text từ thẻ input title

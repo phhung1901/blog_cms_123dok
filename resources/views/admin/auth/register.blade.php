@@ -1,8 +1,7 @@
-
 <!DOCTYPE html>
 <html lang="en">
 
-@include("admin.layout.header")
+@include("admin.inc.head")
 
 <body class="hold-transition register-page">
 <div class="register-box">
@@ -18,14 +17,15 @@
                 </div>
             @endif
             <?php
-                if(\Illuminate\Support\Facades\Session::has("data")){
-                    $data = \Illuminate\Support\Facades\Session::get("data");
-                }
+            if (\Illuminate\Support\Facades\Session::has("data")) {
+                $data = \Illuminate\Support\Facades\Session::get("data");
+            }
             ?>
             <form action="{{route("admin.register.submit")}}" method="post">
                 @csrf
                 <div class="input-group mb-3">
-                    <input value="@if(isset($data)){{$data['name']}}@endif" name="name" type="text" class="form-control" placeholder="Full name">
+                    <input value="@if(isset($data)){{$data['name']}}@endif" name="name" type="text" class="form-control"
+                           placeholder="Full name">
                     <div class="input-group-append">
                         <div class="input-group-text">
                             <span class="fas fa-user"></span>
@@ -33,7 +33,8 @@
                     </div>
                 </div>
                 <div class="input-group mb-3">
-                    <input value="@if(isset($data)){{$data['email']}}@endif" name="email" type="email" class="form-control" placeholder="Email">
+                    <input value="@if(isset($data)){{$data['email']}}@endif" name="email" type="email"
+                           class="form-control" placeholder="Email">
                     <div class="input-group-append">
                         <div class="input-group-text">
                             <span class="fas fa-envelope"></span>
@@ -49,7 +50,8 @@
                     </div>
                 </div>
                 <div class="input-group mb-3">
-                    <input name="password_confirmation" type="password" class="form-control" placeholder="Retype password">
+                    <input name="password_confirmation" type="password" class="form-control"
+                           placeholder="Retype password">
                     <div class="input-group-append">
                         <div class="input-group-text">
                             <span class="fas fa-lock"></span>
@@ -89,7 +91,7 @@
     </div>
 </div>
 
-@include("admin.layout.footer")
+@include("admin.inc.script")
 
 </body>
 </html>

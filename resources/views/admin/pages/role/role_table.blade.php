@@ -1,4 +1,4 @@
-@extends("admin.index")
+@extends("admin.dashboard.index")
 @section("admin.content")
     <div class="content-wrapper">
         <div class="container">
@@ -13,9 +13,13 @@
                                     content: none;
                                 }
                             </style>
-                            <div style="display: flex; flex-direction: row; justify-content: space-between; align-items: center" class="card-header">
+                            <div
+                                style="display: flex; flex-direction: row; justify-content: space-between; align-items: center"
+                                class="card-header">
                                 <h3 class="card-title"><b>Role</b></h3>
-                                <a href="{{route("admin.role.create")}}"><div class="btn btn-success">Add</div></a>
+                                <a href="{{route("admin.role.create")}}">
+                                    <div class="btn btn-success">Add</div>
+                                </a>
                             </div>
                             <div class="card-body">
                                 <div id="example2_wrapper" class="dataTables_wrapper dt-bootstrap4">
@@ -41,7 +45,8 @@
                                                     </th>
                                                     <th class="sorting" tabindex="0" aria-controls="example2"
                                                         rowspan="1" colspan="1"
-                                                        aria-label="Browser: activate to sort column ascending">Permissions
+                                                        aria-label="Browser: activate to sort column ascending">
+                                                        Permissions
                                                     </th>
                                                     <th class="sorting" tabindex="0" aria-controls="example2"
                                                         rowspan="1" colspan="1"
@@ -63,14 +68,22 @@
                                                 @if(isset($roles))
                                                     @foreach($roles as $role)
                                                         <tr class="odd">
-                                                            <td class="dtr-control sorting_1" tabindex="0">{{$role["name"]}}</td>
+                                                            <td class="dtr-control sorting_1"
+                                                                tabindex="0">{{$role["name"]}}</td>
                                                             <td>{{count(\App\Models\User::role($role["name"])->get())}}</td>
-                                                            <td>    </td>
+                                                            <td></td>
                                                             <td>{{$role["created_at"]}}</td>
                                                             <td>{{$role["updated_at"]}}</td>
                                                             <td>
-                                                                <a onclick="return confirm('Bạn có muốn xóa ?')" href="{{route("admin.tag.destroy", [$role["id"]])}}"><div id="category_destroy" class="btn btn-danger">Delete</div></a>
-                                                                <a href="{{route("admin.tag.edit", [$role["id"]])}}"><div class="btn btn-primary">Update</div></a>
+                                                                <a onclick="return confirm('Bạn có muốn xóa ?')"
+                                                                   href="{{route("admin.tag.destroy", [$role["id"]])}}">
+                                                                    <div id="category_destroy" class="btn btn-danger">
+                                                                        Delete
+                                                                    </div>
+                                                                </a>
+                                                                <a href="{{route("admin.tag.edit", [$role["id"]])}}">
+                                                                    <div class="btn btn-primary">Update</div>
+                                                                </a>
                                                             </td>
                                                         </tr>
                                                     @endforeach
