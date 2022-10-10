@@ -45,7 +45,7 @@ class LoginController extends Controller
     public function store(Request $request)
     {
         $validate = Validator::make($request->all(), [
-           'email' => 'required|email',
+            'email' => 'required|email',
             'password' => 'required|min:6'
         ]);
 
@@ -59,7 +59,7 @@ class LoginController extends Controller
                 return redirect()->back()->with('error', 'Pls, login agian!');
             }
         }else{
-            return redirect()->route("admin.login.view")->with('error', 'Pls, check input login!');
+            return redirect()->route("admin.auth.view")->with('error', 'Pls, check input login!');
         }
     }
 
@@ -106,6 +106,6 @@ class LoginController extends Controller
     public function destroy()
     {
         Auth::logout();
-        return redirect()->route("admin.login.view");
+        return redirect()->route("admin.auth.view");
     }
 }
