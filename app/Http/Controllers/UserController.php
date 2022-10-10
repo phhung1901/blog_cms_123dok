@@ -31,7 +31,7 @@ class UserController extends Controller
 
     public function create()
     {
-        if (!Auth::check()){
+        if (Auth::check()){
             return view("admin.auth.register", [
                 "title" => "Đăng ký"
             ]);

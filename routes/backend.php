@@ -9,8 +9,8 @@ use App\Http\Controllers\UserController;
 
 Route::prefix("admin")->group(function (){
     //Login
-    Route::get("/", [LoginController::class, "index"])->name("admin.auth.view");
-    Route::post('/login', [LoginController::class, "store"])->name("admin.auth.login");
+    Route::get("/login", [LoginController::class, "showLoginForm"])->name("admin.auth.view");
+    Route::post('/login/submit', [LoginController::class, "login"])->name("admin.auth.login");
 
     //Register
     Route::get("/register", [UserController::class, "create"])->name("admin.register.view");
@@ -59,6 +59,6 @@ Route::prefix("admin")->group(function (){
         });
 
         //Logout
-        Route::get("/logout", [LoginController::class, "destroy"])->name("admin.logout");
+        Route::get("/logout", [LoginController::class, "logout"])->name("admin.logout");
     });
 });

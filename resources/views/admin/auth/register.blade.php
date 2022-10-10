@@ -85,7 +85,7 @@
                     Sign up using Google+
                 </a>
             </div>
-            <a href="{{route("admin.login.view")}}" class="text-center">I already have a membership</a>
+            <a href="{{route("admin.auth.view")}}" class="text-center">I already have a membership</a>
         </div>
 
     </div>
