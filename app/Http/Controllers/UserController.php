@@ -63,7 +63,8 @@ class UserController extends Controller
     public function getRoleUser($id)
     {
         $user = UserService::getUser($id);
-        $roles = RoleService::getRole();
+        $roles = RoleService::getRoles();
+
         if ($this->userService->checkRole($id)) {
             return view("admin.pages.user.user_add_role", [
                 "title" => "Add user role",

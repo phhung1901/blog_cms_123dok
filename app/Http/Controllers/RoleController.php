@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Services\Admin\Permission\PermissionService;
 use App\Http\Services\Admin\Role\RoleService;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -18,7 +19,7 @@ class RoleController extends Controller
 
     public function index()
     {
-        $roles = RoleService::getRole();
+        $roles = RoleService::getRoles();
 
         return view("admin.pages.role.role_table", [
             "title" => "Role",
@@ -49,6 +50,36 @@ class RoleController extends Controller
         return  redirect()->route("admin.role.view");
     }
 
+
+    public function getPermissionRole($id){
+        $role = RoleService::getRole($id);
+        $permissions = PermissionService::getPermissions();
+
+        if (RoleService::checkPermission($id)){
+            return view("admin.pages.role.role_add_permission", [
+                "title" => "Add role permission",
+                "role" => $role,
+                "permissions" => $permissions
+            ]);
+        }
+        return view("admin.pages.role.role_add_permission", [
+            "title" => "Add role permission",
+            "role" => $role,
+            "permissions" => $permissions,
+            "permission_role" => $role->getPermissionNames()->toArray()
+        ]);
+    }
+
+    public function setPermissionRole(Request $request, $id){
+        $role = RoleService::getRole($id);
+        $permissions = $request->get("permission");
+        $permissions_role = $role->getAllPermissions();
+        foreach ($permissions_role as $key){
+            $role->revokePermissionTo($key);
+        }
+        $role->givePermissionTo($permissions);
+        return redirect()->route("admin.role.view");
+    }
 
     public function show($id)
     {

@@ -13,14 +13,14 @@ class Permission extends Model
     protected $table = "permissions";
 
     protected $guarded = [];
+//
+//    public function users(): BelongsToMany
+//    {
+//        return $this->belongsToMany(User::class);
+//    }
 
-    public function users(): BelongsToMany
-    {
-        return $this->belongsToMany(User::class);
-    }
-
-    public function roles(): BelongsToMany
-    {
-        return $this->belongsToMany(Role::class);
-    }
+//    public function roles(): BelongsToMany
+//    {
+//        return $this->belongsToMany(Role::class);
+//    }
 }

@@ -45,19 +45,14 @@
                                                     </th>
                                                     <th class="sorting" tabindex="0" aria-controls="example2"
                                                         rowspan="1" colspan="1"
-                                                        aria-label="Browser: activate to sort column ascending">
-                                                        Created_at
-                                                    </th>
-                                                    <th class="sorting" tabindex="0" aria-controls="example2"
-                                                        rowspan="1" colspan="1"
-                                                        aria-label="Engine version: activate to sort column ascending">
-                                                        Updated_at
-                                                    </th>
-                                                    <th class="sorting" tabindex="0" aria-controls="example2"
-                                                        rowspan="1" colspan="1"
                                                         aria-label="CSS grade: activate to sort column ascending">Role
                                                     </th>
                                                     <th class="sorting" tabindex="0" aria-controls="example2"
+                                                        rowspan="1" colspan="1"
+                                                        aria-label="CSS grade: activate to sort column ascending">Permission
+                                                    </th>
+
+                                                    <th style="min-width: 200px;" class="sorting" tabindex="0" aria-controls="example2"
                                                         rowspan="1" colspan="0"
                                                         aria-label="CSS grade: activate to sort column ascending">Action
                                                     </th>
@@ -70,9 +65,10 @@
                                                             <td class="dtr-control sorting_1"
                                                                 tabindex="0">{{$user["name"]}}</td>
                                                             <td>{{$user["email"]}}</td>
-                                                            <td>{{$user["created_at"]}}</td>
-                                                            <td>{{$user["updated_at"]}}</td>
                                                             <td>{{Str::remove('"', trim($user->getRoleNames(), "[]"))}}</td>
+                                                            <td>{{Str::remove('"', trim(\App\Http\Services\Admin\User\UserService::getUserPermissions($user["id"]), "[]"))}}</td>
+{{--                                                            <td>{{$user["created_at"]}}</td>--}}
+{{--                                                            <td>{{$user["updated_at"]}}</td>--}}
                                                             <td>
                                                                 <a onclick="return confirm('Bạn có muốn xóa ?')"
                                                                    href="">

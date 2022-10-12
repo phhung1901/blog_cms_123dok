@@ -52,6 +52,8 @@ Route::prefix("admin")->group(function (){
             Route::get("/action/delete/{id}", [RoleController::class, "destroy"])->name("admin.role.destroy");
             Route::get("/action/update/{id}", [RoleController::class, "edit"])->name("admin.role.edit");
             Route::post("/form/update/{id}", [RoleController::class, "update"])->name("admin.role.update");
+            Route::get("/add_role_permission/{id}", [RoleController::class, "getPermissionRole"])->name("admin.role.add_permission");
+            Route::post("/add_role_permission/submit/{id}", [RoleController::class, "setPermissionRole"])->name("admin.role.add_permission.sub");
         });
 
         //Permission

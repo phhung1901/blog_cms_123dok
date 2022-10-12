@@ -43,8 +43,14 @@ class UserService{
         }
     }
 
-    public static function getUserRole(){
-
+    public static function getUserPermissions($id){
+        $user = self::getUser($id);
+        $permissions_data = $user->getAllPermissions()->toArray();
+        $permissions = "";
+        foreach ($permissions_data as $permission){
+            $permissions .= $permission["name"]. ", ";
+        }
+        return $permissions;
     }
 
 }

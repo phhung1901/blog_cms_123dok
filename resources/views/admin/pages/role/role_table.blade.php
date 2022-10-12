@@ -88,6 +88,9 @@
                                                                 <a href="{{route("admin.tag.edit", [$role["id"]])}}">
                                                                     <div class="btn btn-primary">Update</div>
                                                                 </a>
+                                                                <a href="{{route("admin.role.add_permission", [$role["id"]])}}">
+                                                                    <div class="btn btn-secondary">Permission</div>
+                                                                </a>
                                                             </td>
                                                         </tr>
                                                     @endforeach
