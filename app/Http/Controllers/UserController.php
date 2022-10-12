@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Services\Admin\Role\RoleService;
 use App\Http\Services\Admin\User\UserService;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -20,8 +21,8 @@ class UserController extends Controller
 
     public function index()
     {
-        $users = $this->userService->getUser();
 
+        $users = $this->userService->getUsers();
 
         return view("admin.pages.user.user_table", [
             "title" => "User",
@@ -57,6 +58,43 @@ class UserController extends Controller
             $data = $request->all();
             return redirect()->back()->with("error", "Pls, check register")->with(['data' => $data]);
         }
+    }
+
+    public function getRoleUser($id)
+    {
+        $user = UserService::getUser($id);
+        $roles = RoleService::getRole();
+        if ($this->userService->checkRole($id)) {
+            return view("admin.pages.user.user_add_role", [
+                "title" => "Add user role",
+                "roles" => $roles,
+                "user" => $user
+            ]);
+        }
+        return view("admin.pages.user.user_add_role", [
+            "title" => "Update user role",
+            "roles" => $roles,
+            "user" => $user,
+            "user_role" => $user->getRoleNames()->toArray()
+        ]);
+    }
+
+    public function setRoleUser(Request $request, $id)
+    {
+        $roles = $request->get("roles");
+        $user = UserService::getUser($id);
+        // get old role of this user for remove old role
+        $user_role = $user->getRoleNames()->toArray();
+        if (count($user_role) != 0){
+            foreach ($user_role as $key)
+            {
+                $user->removeRole($key);
+            }
+        }
+        // add new role
+        $user->assignRole($roles);
+
+        return redirect()->route("admin.user.view");
     }
 
     public function show($id)

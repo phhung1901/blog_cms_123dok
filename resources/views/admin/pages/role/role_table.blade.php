@@ -70,13 +70,17 @@
                                                         <tr class="odd">
                                                             <td class="dtr-control sorting_1"
                                                                 tabindex="0">{{$role["name"]}}</td>
-                                                            <td>{{count(\App\Models\User::role($role["name"])->get())}}</td>
+                                                            <td>
+                                                                <?php
+                                                                    echo count(\App\Models\User::role($role["name"])->get());
+                                                                ?>
+                                                            </td>
                                                             <td></td>
                                                             <td>{{$role["created_at"]}}</td>
                                                             <td>{{$role["updated_at"]}}</td>
                                                             <td>
                                                                 <a onclick="return confirm('Bạn có muốn xóa ?')"
-                                                                   href="{{route("admin.tag.destroy", [$role["id"]])}}">
+                                                                      href="{{route("admin.tag.destroy", [$role["id"]])}}">
                                                                     <div id="category_destroy" class="btn btn-danger">
                                                                         Delete
                                                                     </div>

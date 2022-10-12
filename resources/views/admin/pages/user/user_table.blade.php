@@ -72,7 +72,7 @@
                                                             <td>{{$user["email"]}}</td>
                                                             <td>{{$user["created_at"]}}</td>
                                                             <td>{{$user["updated_at"]}}</td>
-                                                            <td></td>
+                                                            <td>{{Str::remove('"', trim($user->getRoleNames(), "[]"))}}</td>
                                                             <td>
                                                                 <a onclick="return confirm('Bạn có muốn xóa ?')"
                                                                    href="">
@@ -82,6 +82,9 @@
                                                                 </a>
                                                                 <a href="">
                                                                     <div class="btn btn-primary">Update</div>
+                                                                </a>
+                                                                <a href="{{route("admin.user.add_role", [$user["id"]])}}">
+                                                                    <div class="btn btn-secondary">Role</div>
                                                                 </a>
                                                             </td>
                                                         </tr>

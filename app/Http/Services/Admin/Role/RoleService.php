@@ -12,7 +12,7 @@ class RoleService{
         $role = Role::create(["name" => $request->get("role_name")]);
     }
 
-    public function getRole(): Collection
+    public static function getRole(): Collection
     {
         return Role::all();
     }

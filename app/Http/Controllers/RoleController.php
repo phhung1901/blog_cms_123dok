@@ -18,13 +18,11 @@ class RoleController extends Controller
 
     public function index()
     {
-        $roles = $this->roleService->getRole();
-        $user_roles = User::role("super-admin")->get();
+        $roles = RoleService::getRole();
 
         return view("admin.pages.role.role_table", [
             "title" => "Role",
-            "roles" => $roles,
-            "user_roles" => $user_roles
+            "roles" => $roles
         ]);
     }
 

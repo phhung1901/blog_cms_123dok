@@ -4,13 +4,15 @@ namespace App\Http\Services\Admin\User;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\DB;
+
 //use Illuminate\Support\Facades\Validator;
 //use Spatie\Permission\Models\Permission;
 //use Spatie\Permission\Models\Role;
 
 class UserService{
 
-    public function getUser(): Collection
+    public function getUsers(): Collection
     {
         return User::all();
     }
@@ -23,6 +25,26 @@ class UserService{
         $user->password = bcrypt($request->get("password"));
         $user->role = "1";
         $user->save();
+    }
+
+    public static function getUser($id)
+    {
+        return User::find($id);
+    }
+
+    public function checkRole($id){
+        $count = count(DB::table("model_has_roles")->select("model_id")
+            ->where("model_id", $id)->get());
+
+        if ($count == 0){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+    public static function getUserRole(){
+
     }
 
 }

@@ -56,6 +56,8 @@ Route::prefix("admin")->group(function (){
         //User
         Route::prefix("/user")->group(function (){
             Route::get("/table", [UserController::class, "index"])->name("admin.user.view");
+            Route::get("/add_user_role/{id}", [UserController::class, "getRoleUser"])->name("admin.user.add_role");
+            Route::post("/add_user_role/submit/{id}", [UserController::class, "setRoleUser"])->name("admin.user.add_role.sub");
         });
 
         //Logout
