@@ -34,7 +34,7 @@
                                     {!! \Session::get('error') !!}
                                 </div>
                             @endif
-                            <form action="" method="POST">
+                            <form action="{{route("admin.permission.store")}}" method="POST">
                                 @csrf
                                 <div class="card-body">
                                     <div class="form-group">

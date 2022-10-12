@@ -6,6 +6,7 @@ use App\Http\Controllers\Admin\LoginController;
 use App\Http\Controllers\Admin\TagController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\Admin\PermissionController;
 
 Route::prefix("admin")->group(function (){
     //Login
@@ -51,6 +52,13 @@ Route::prefix("admin")->group(function (){
             Route::get("/action/delete/{id}", [RoleController::class, "destroy"])->name("admin.role.destroy");
             Route::get("/action/update/{id}", [RoleController::class, "edit"])->name("admin.role.edit");
             Route::post("/form/update/{id}", [RoleController::class, "update"])->name("admin.role.update");
+        });
+
+        //Permission
+        Route::prefix("/permission")->group(function (){
+            Route::get("/form", [PermissionController::class, "create"])->name("admin.permission.create");
+            Route::post("/form/submit", [PermissionController::class, "store"])->name("admin.permission.store");
+            Route::get("/table", [PermissionController::class, "index"])->name("admin.permission.index");
         });
 
         //User
