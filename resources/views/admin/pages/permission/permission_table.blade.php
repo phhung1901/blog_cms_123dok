@@ -41,15 +41,6 @@
                                                     </th>
                                                     <th class="sorting" tabindex="0" aria-controls="example2"
                                                         rowspan="1" colspan="1"
-                                                        aria-label="Browser: activate to sort column ascending">User
-                                                    </th>
-                                                    <th class="sorting" tabindex="0" aria-controls="example2"
-                                                        rowspan="1" colspan="1"
-                                                        aria-label="Browser: activate to sort column ascending">
-                                                        Role
-                                                    </th>
-                                                    <th class="sorting" tabindex="0" aria-controls="example2"
-                                                        rowspan="1" colspan="1"
                                                         aria-label="Engine version: activate to sort column ascending">
                                                         Created at
                                                     </th>
@@ -70,12 +61,6 @@
                                                         <tr class="odd">
                                                             <td class="dtr-control sorting_1"
                                                                 tabindex="0">{{$permission["name"]}}</td>
-                                                            <td>
-{{--                                                                    <?php--}}
-{{--                                                                    echo count(\App\Models\User::role($permission["name"])->get());--}}
-{{--                                                                    ?>--}}
-                                                            </td>
-                                                            <td></td>
                                                             <td>{{$permission["created_at"]}}</td>
                                                             <td>{{$permission["updated_at"]}}</td>
                                                             <td>

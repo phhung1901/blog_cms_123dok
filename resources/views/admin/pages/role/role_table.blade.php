@@ -58,7 +58,7 @@
                                                         aria-label="CSS grade: activate to sort column ascending">Update
                                                         at
                                                     </th>
-                                                    <th class="sorting" tabindex="0" aria-controls="example2"
+                                                    <th style="min-width: 250px;" class="sorting" tabindex="0" aria-controls="example2"
                                                         rowspan="1" colspan="0"
                                                         aria-label="CSS grade: activate to sort column ascending">Action
                                                     </th>
@@ -75,7 +75,7 @@
                                                                     echo count(\App\Models\User::role($role["name"])->get());
                                                                 ?>
                                                             </td>
-                                                            <td></td>
+                                                            <td>{{Str::remove('"', trim($role->getPermissionNames(), "[]"))}}</td>
                                                             <td>{{$role["created_at"]}}</td>
                                                             <td>{{$role["updated_at"]}}</td>
                                                             <td>
