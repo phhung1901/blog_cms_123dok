@@ -56,18 +56,22 @@
                         </p>
                     </a>
                     <ul class="nav nav-treeview">
-                        <li class="nav-item">
-                            <a href="{{route("admin.tag.view")}}" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Tag</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="{{route("admin.category.view")}}" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Category</p>
-                            </a>
-                        </li>
+                        @can('tag manage')
+                            <li class="nav-item">
+                                <a href="{{route("admin.tag.view")}}" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Tag</p>
+                                </a>
+                            </li>
+                        @endcan
+                        @can('category manage')
+                            <li class="nav-item">
+                                <a href="{{route("admin.category.view")}}" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Category</p>
+                                </a>
+                            </li>
+                        @endcan
                         <li class="nav-item">
                             <a href="pages/charts/inline.html" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
@@ -117,35 +121,43 @@
                         </li>
                     </ul>
                 </li>
-                <li class="nav-item">
-                    <a href="#" class="nav-link">
-                        <i class="nav-icon fas fa-user"></i>
-                        <p>
-                            User
-                            <i class="right fas fa-angle-left"></i>
-                        </p>
-                    </a>
-                    <ul class="nav nav-treeview">
-                        <li class="nav-item">
-                            <a href="{{route("admin.user.view")}}" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>User list</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="{{route("admin.role.view")}}" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Role</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="{{route("admin.permission.index")}}" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Permissions</p>
-                            </a>
-                        </li>
-                    </ul>
-                </li>
+                @can('user manage')
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">
+                            <i class="nav-icon fas fa-user"></i>
+                            <p>
+                                User
+                                <i class="right fas fa-angle-left"></i>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                            @can('user manage')
+                                <li class="nav-item">
+                                    <a href="{{route("admin.user.view")}}" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>User list</p>
+                                    </a>
+                                </li>
+                            @endcan
+                            @can('roles manage')
+                                <li class="nav-item">
+                                    <a href="{{route("admin.role.view")}}" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Role</p>
+                                    </a>
+                                </li>
+                            @endcan
+                            @can('permissions manage')
+                                <li class="nav-item">
+                                    <a href="{{route("admin.permission.index")}}" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Permissions</p>
+                                    </a>
+                                </li>
+                            @endcan
+                        </ul>
+                    </li>
+                @endcan
             </ul>
         </nav>
 

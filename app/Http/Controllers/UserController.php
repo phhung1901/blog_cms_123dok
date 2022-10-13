@@ -106,12 +106,20 @@ class UserController extends Controller
 
     public function edit($id)
     {
-        //
+        $user = UserService::getUser($id);
+
+        return view("admin.pages.user.user_update", [
+            'title' => 'User update',
+            'user' => $user
+        ]);
     }
 
     public function update(Request $request, $id)
     {
-        //
+        if (UserService::update($request, $id)){
+            return redirect()->route("admin.user.view");
+        }
+        return redirect()->back()->with("error", "Pls, check your form");
     }
 
 

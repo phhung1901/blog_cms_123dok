@@ -5,6 +5,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Validator;
 
 //use Illuminate\Support\Facades\Validator;
 //use Spatie\Permission\Models\Permission;
@@ -53,4 +54,41 @@ class UserService{
         return $permissions;
     }
 
+    public static function update(Request $request, $id){
+        $user = self::getUser($id);
+        $name = $request->get("user_name");
+        $email = $request->get("email");
+
+        //check new password isset
+        $new_pass = $request->get("password");
+        $re_password = $request->get("password_confirmation");
+        if ($new_pass == null){
+            $validate = Validator::make($request->all(), [
+                "user_name" => "required",
+                "email" => "required|email"
+            ]);
+            if (!$validate->fails()){
+                $user->name = $name;
+                $user->email = $email;
+            }else{
+                return false;
+            }
+        }else{
+            $validate = Validator::make($request->all(), [
+                "user_name" => "required",
+                "email" => "required|email",
+                "password" => "required|min:6|max:100|confirmed",
+                "password_confirmation" => "required|same:password"
+            ]);
+            if (!$validate->fails()){
+                $user->name = $name;
+                $user->email = $email;
+                $user->password = bcrypt($new_pass);
+            }else{
+                return false;
+            }
+        }
+        $user->save();
+        return true;
+    }
 }

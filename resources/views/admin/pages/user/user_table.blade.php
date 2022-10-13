@@ -76,7 +76,7 @@
                                                                         Delete
                                                                     </div>
                                                                 </a>
-                                                                <a href="">
+                                                                <a href="{{route("admin.user.edit", [$user["id"]])}}">
                                                                     <div class="btn btn-primary">Update</div>
                                                                 </a>
                                                                 <a href="{{route("admin.user.add_role", [$user["id"]])}}">

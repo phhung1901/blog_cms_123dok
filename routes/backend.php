@@ -18,9 +18,6 @@ Route::prefix("admin")->group(function (){
     Route::post("/register/submit", [UserController::class, "store"])->name("admin.register.submit");
 
     Route::middleware('auth_admin:backend')->group(function () {
-//        Route::get("", function (){
-//            dd("Oke");
-//        });
         //Dashboard
         Route::get('', [DashboardController::class, "index"])->name('admin.dashboard.view');
 
@@ -57,11 +54,13 @@ Route::prefix("admin")->group(function (){
         });
 
         //Permission
-        Route::prefix("/permission")->group(function (){
-            Route::get("/form", [PermissionController::class, "create"])->name("admin.permission.create");
-            Route::post("/form/submit", [PermissionController::class, "store"])->name("admin.permission.store");
-            Route::get("/table", [PermissionController::class, "index"])->name("admin.permission.index");
-            Route::get("/action/delete/{id}", [PermissionController::class, "destroy"])->name("admin.permission.destroy");
+        Route::group(['middleware' => ['role:super-admin']], function (){
+            Route::prefix("/permission")->group(function (){
+                Route::get("/form", [PermissionController::class, "create"])->name("admin.permission.create");
+                Route::post("/form/submit", [PermissionController::class, "store"])->name("admin.permission.store");
+                Route::get("/table", [PermissionController::class, "index"])->name("admin.permission.index");
+                Route::get("/action/delete/{id}", [PermissionController::class, "destroy"])->name("admin.permission.destroy");
+            });
         });
 
         //User
@@ -69,6 +68,8 @@ Route::prefix("admin")->group(function (){
             Route::get("/table", [UserController::class, "index"])->name("admin.user.view");
             Route::get("/add_user_role/{id}", [UserController::class, "getRoleUser"])->name("admin.user.add_role");
             Route::post("/add_user_role/submit/{id}", [UserController::class, "setRoleUser"])->name("admin.user.add_role.sub");
+            Route::get("/action/edit/{id}", [UserController::class, "edit"])->name("admin.user.edit");
+            Route::post("/action/update/{id}", [UserController::class, "update"])->name("admin.user.update");
         });
 
         //Logout
