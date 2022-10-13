@@ -41,20 +41,21 @@ Route::prefix("admin")->group(function (){
             Route::post("/form/update/{id}", [TagController::class, "update"])->name("admin.tag.update");
         });
 
-        //Role
-        Route::prefix("/role")->group(function (){
-            Route::get("/form", [RoleController::class, "create"])->name("admin.role.create");
-            Route::post("/form/submit", [RoleController::class, "store"])->name("admin.role.store");
-            Route::get("/table", [RoleController::class, "index"])->name("admin.role.view");
-            Route::get("/action/delete/{id}", [RoleController::class, "destroy"])->name("admin.role.destroy");
-            Route::get("/action/update/{id}", [RoleController::class, "edit"])->name("admin.role.edit");
-            Route::post("/form/update/{id}", [RoleController::class, "update"])->name("admin.role.update");
-            Route::get("/add_role_permission/{id}", [RoleController::class, "getPermissionRole"])->name("admin.role.add_permission");
-            Route::post("/add_role_permission/submit/{id}", [RoleController::class, "setPermissionRole"])->name("admin.role.add_permission.sub");
-        });
 
-        //Permission
         Route::group(['middleware' => ['role:super-admin']], function (){
+            //Role
+            Route::prefix("/role")->group(function (){
+                Route::get("/form", [RoleController::class, "create"])->name("admin.role.create");
+                Route::post("/form/submit", [RoleController::class, "store"])->name("admin.role.store");
+                Route::get("/table", [RoleController::class, "index"])->name("admin.role.view");
+                Route::get("/action/delete/{id}", [RoleController::class, "destroy"])->name("admin.role.destroy");
+                Route::get("/action/update/{id}", [RoleController::class, "edit"])->name("admin.role.edit");
+                Route::post("/form/update/{id}", [RoleController::class, "update"])->name("admin.role.update");
+                Route::get("/add_role_permission/{id}", [RoleController::class, "getPermissionRole"])->name("admin.role.add_permission");
+                Route::post("/add_role_permission/submit/{id}", [RoleController::class, "setPermissionRole"])->name("admin.role.add_permission.sub");
+            });
+
+            //Permission
             Route::prefix("/permission")->group(function (){
                 Route::get("/form", [PermissionController::class, "create"])->name("admin.permission.create");
                 Route::post("/form/submit", [PermissionController::class, "store"])->name("admin.permission.store");
@@ -64,12 +65,17 @@ Route::prefix("admin")->group(function (){
         });
 
         //User
-        Route::prefix("/user")->group(function (){
-            Route::get("/table", [UserController::class, "index"])->name("admin.user.view");
-            Route::get("/add_user_role/{id}", [UserController::class, "getRoleUser"])->name("admin.user.add_role");
-            Route::post("/add_user_role/submit/{id}", [UserController::class, "setRoleUser"])->name("admin.user.add_role.sub");
-            Route::get("/action/edit/{id}", [UserController::class, "edit"])->name("admin.user.edit");
-            Route::post("/action/update/{id}", [UserController::class, "update"])->name("admin.user.update");
+        Route::group(["middleware" => ["role:super-admin|admin"]], function (){
+            Route::prefix("/user")->group(function (){
+                Route::get("/table", [UserController::class, "index"])->name("admin.user.view");
+
+                Route::group(["middleware" => ["role:super-admin"]], function (){
+                    Route::get("/add_user_role/{id}", [UserController::class, "getRoleUser"])->name("admin.user.add_role");
+                    Route::post("/add_user_role/submit/{id}", [UserController::class, "setRoleUser"])->name("admin.user.add_role.sub");
+                    Route::get("/action/edit/{id}", [UserController::class, "edit"])->name("admin.user.edit");
+                    Route::post("/action/update/{id}", [UserController::class, "update"])->name("admin.user.update");
+                });
+            });
         });
 
         //Logout

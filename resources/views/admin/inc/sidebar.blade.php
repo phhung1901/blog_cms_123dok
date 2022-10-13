@@ -72,18 +72,6 @@
                                 </a>
                             </li>
                         @endcan
-                        <li class="nav-item">
-                            <a href="pages/charts/inline.html" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Inline</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="pages/charts/uplot.html" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>uPlot</p>
-                            </a>
-                        </li>
                     </ul>
                 </li>
                 <li class="nav-item">
@@ -95,30 +83,38 @@
                         </p>
                     </a>
                     <ul class="nav nav-treeview">
-                        <li class="nav-item">
-                            <a href="{{route("admin.category.create")}}" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Category</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="{{route("admin.tag.create")}}" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Tag</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="{{route("admin.role.create")}}" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Roles</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="{{route("admin.permission.create")}}" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Permissions</p>
-                            </a>
-                        </li>
+                        @can('category manage')
+                            <li class="nav-item">
+                                <a href="{{route("admin.category.create")}}" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Category</p>
+                                </a>
+                            </li>
+                        @endcan
+                        @can('tag manage')
+                            <li class="nav-item">
+                                <a href="{{route("admin.tag.create")}}" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Tag</p>
+                                </a>
+                            </li>
+                        @endcan
+                        @can('roles manage')
+                            <li class="nav-item">
+                                <a href="{{route("admin.role.create")}}" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Roles</p>
+                                </a>
+                            </li>
+                        @endcan
+                        @can('permissions manage')
+                            <li class="nav-item">
+                                <a href="{{route("admin.permission.create")}}" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Permissions</p>
+                                </a>
+                            </li>
+                        @endcan
                     </ul>
                 </li>
                 @can('user manage')
@@ -158,6 +154,14 @@
                         </ul>
                     </li>
                 @endcan
+                <li class="nav-item">
+                    <a onclick="return confirm('Bạn có muốn đăng xuất ?')" href="{{route("admin.logout")}}" class="nav-link">
+                        <i class="nav-icon fas fa-power-off"></i>
+                        <p>
+                            Logout
+                        </p>
+                    </a>
+                </li>
             </ul>
         </nav>
 
