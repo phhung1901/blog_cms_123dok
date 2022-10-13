@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Services\Admin\Permission\PermissionService;
 use App\Http\Services\Admin\Role\RoleService;
+use App\Models\Role;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
@@ -101,6 +102,13 @@ class RoleController extends Controller
 
     public function destroy($id)
     {
-        //
+        if (RoleService::getRole($id) != null){
+            $role = RoleService::getRole($id);
+//            dd($role);
+            $role->delete();
+            return redirect()->route("admin.role.view");
+        }else{
+            return redirect()->back();
+        }
     }
 }

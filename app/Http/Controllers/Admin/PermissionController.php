@@ -13,7 +13,6 @@ class PermissionController extends Controller
     public function index()
     {
         $permissions = PermissionService::getPermissions();
-//        dd($permissions);
         return view("admin.pages.permission.permission_table", [
             "title" => "Permission",
             "permissions" => $permissions
@@ -31,8 +30,11 @@ class PermissionController extends Controller
 
     public function store(Request $request)
     {
-        Permission::create(["name" => $request->get("permission_name")]);
-        return redirect()->route("admin.permission.index");
+        if (!PermissionService::checkPermission($request)){
+            Permission::create(["name" => $request->get("permission_name")]);
+            return redirect()->route("admin.permission.index");
+        }
+        return redirect()->back()->with("error", "Permission already exist !");
     }
 
 
@@ -56,6 +58,8 @@ class PermissionController extends Controller
 
     public function destroy($id)
     {
-        //
+        $permission = PermissionService::getPermission($id);
+        $permission->delete();
+        return redirect()->route("admin.permission.index");
     }
 }

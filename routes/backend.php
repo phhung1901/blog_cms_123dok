@@ -61,6 +61,7 @@ Route::prefix("admin")->group(function (){
             Route::get("/form", [PermissionController::class, "create"])->name("admin.permission.create");
             Route::post("/form/submit", [PermissionController::class, "store"])->name("admin.permission.store");
             Route::get("/table", [PermissionController::class, "index"])->name("admin.permission.index");
+            Route::get("/action/delete/{id}", [PermissionController::class, "destroy"])->name("admin.permission.destroy");
         });
 
         //User

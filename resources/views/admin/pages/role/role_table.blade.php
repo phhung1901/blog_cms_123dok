@@ -80,7 +80,7 @@
                                                             <td>{{$role["updated_at"]}}</td>
                                                             <td>
                                                                 <a onclick="return confirm('Bạn có muốn xóa ?')"
-                                                                      href="{{route("admin.tag.destroy", [$role["id"]])}}">
+                                                                      href="{{route("admin.role.destroy", [$role["id"]])}}">
                                                                     <div id="category_destroy" class="btn btn-danger">
                                                                         Delete
                                                                     </div>

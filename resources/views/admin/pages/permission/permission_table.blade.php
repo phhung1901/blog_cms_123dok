@@ -65,7 +65,7 @@
                                                             <td>{{$permission["updated_at"]}}</td>
                                                             <td>
                                                                 <a onclick="return confirm('Bạn có muốn xóa ?')"
-                                                                   href="{{route("admin.tag.destroy", [$permission["id"]])}}">
+                                                                   href="{{route("admin.permission.destroy", [$permission["id"]])}}">
                                                                     <div id="category_destroy" class="btn btn-danger">
                                                                         Delete
                                                                     </div>
