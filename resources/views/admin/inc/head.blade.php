@@ -10,3 +10,5 @@
 <link rel="stylesheet" href="{{asset("/asset_admin/plugins/datatables-responsive/css/responsive.bootstrap4.min.css")}}">
 <link rel="stylesheet" href="{{asset("/asset_admin/plugins/datatables-buttons/css/buttons.bootstrap4.min.css")}}">
 <link rel="stylesheet" href="{{asset("/asset_admin/css/adminlte.min.css?v=3.2.0")}}">
+{{--CK editor--}}
+<script src="https://cdn.ckeditor.com/ckeditor5/35.2.1/classic/ckeditor.js"></script>

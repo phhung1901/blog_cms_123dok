@@ -83,6 +83,14 @@
                         </p>
                     </a>
                     <ul class="nav nav-treeview">
+                        @can('post manage')
+                            <li class="nav-item">
+                                <a href="{{route("admin.post.create")}}" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Post</p>
+                                </a>
+                            </li>
+                        @endcan
                         @can('category manage')
                             <li class="nav-item">
                                 <a href="{{route("admin.category.create")}}" class="nav-link">

@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\DB;
 
 class TagService
 {
-    public function getTag(): Collection
+    public static function getTag(): Collection
     {
         return Tag::orderBy("id", "ASC")->get();
     }

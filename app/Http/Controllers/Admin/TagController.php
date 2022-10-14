@@ -19,7 +19,7 @@ class TagController extends Controller
 
     public function index()
     {
-        $tags = $this->tagService->getTag();
+        $tags = TagService::getTag();
 
         return view("admin.pages.tag.tag_table", [
             "title" => "Tag",
@@ -89,7 +89,7 @@ class TagController extends Controller
 
     public function destroy($id)
     {
-        $tags = $this->tagService->getTag();
+        $tags = TagService::getTag();
 
         foreach ($tags as $tag){
             if ($tag["id"] == $id){

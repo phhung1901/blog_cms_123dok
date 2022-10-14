@@ -7,6 +7,7 @@ use App\Http\Controllers\Admin\TagController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\Admin\PermissionController;
+use App\Http\Controllers\Admin\PostController;
 
 Route::prefix("admin")->group(function (){
     //Login
@@ -39,6 +40,12 @@ Route::prefix("admin")->group(function (){
             Route::get("/action/delete/{id}", [TagController::class, "destroy"])->name("admin.tag.destroy");
             Route::get("/action/update/{id}", [TagController::class, "edit"])->name("admin.tag.edit");
             Route::post("/form/update/{id}", [TagController::class, "update"])->name("admin.tag.update");
+        });
+
+        //Post
+        Route::prefix("/post")->group(function (){
+            Route::get("/form", [PostController::class, "create"])->name("admin.post.create");
+            Route::post("/form/submit", [PostController::class, "store"])->name("admin.post.store");
         });
 
 

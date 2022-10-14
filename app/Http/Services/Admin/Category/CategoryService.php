@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
 class CategoryService{
-    public function getCategory(): Collection
+    public static function getCategory(): Collection
     {
         return Category::orderBy("parent_id", "ASC")->get();
     }
