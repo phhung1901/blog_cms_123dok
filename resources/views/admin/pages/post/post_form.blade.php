@@ -1,5 +1,10 @@
 @extends("admin.dashboard.index")
 @section("admin.content")
+    <style>
+        .fillable{
+            color: red;
+        }
+    </style>
     <div class="content-wrapper">
 
         <section class="content-header">
@@ -30,15 +35,17 @@
                             </div>
                             <br>
                             @if (\Session::has('error'))
-                                <div class="alert alert-danger">
-                                    {!! \Session::get('error') !!}
+                                <div class="card body">
+                                    <div class="alert alert-danger">
+                                        {!! \Session::get('error') !!}
+                                    </div>
                                 </div>
                             @endif
                             <form action="{{route("admin.post.store")}}" method="POST" enctype="multipart/form-data">
                                 @csrf
                                 <div class="card-body">
                                     <div class="form-group">
-                                        <label for="title">Post title</label>
+                                        <label for="title">Post title <span class="fillable">*</span></label>
                                         <input onkeyup="ChangeToSlug();" name="title" type="text" class="form-control" id="title">
                                     </div>
                                     <div class="form-group">
@@ -65,8 +72,8 @@
                                         <textarea name="content" id="editor"></textarea>
                                     </div>
                                     <div class="form-group">
-                                        <label>Category</label>
-                                        <select name="category" class="form-control">
+                                        <label>Category <span class="fillable">*</span></label>
+                                        <select id="category" name="category" class="form-control">
                                             <option value="0">Null</option>
                                             @if(isset($categories))
                                                 @foreach($categories as $category)
@@ -77,12 +84,12 @@
                                     </div>
                                     <div class="form-group clearfix">
                                         <div>
-                                            <label>Tags</label>
+                                            <label>Tags <span class="fillable">*</span></label>
                                         </div>
                                         @if(isset($tags))
                                             @foreach($tags as $tag)
                                                 <div style="margin-right: 20px" class="icheck-primary d-inline">
-                                                    <input value="{{$tag->id}}" id="{{$tag->id}}" name="tag[]" type="checkbox">
+                                                    <input class="tags" value="{{$tag->id}}" id="{{$tag->id}}" name="tag[]" type="checkbox">
                                                     <label for="{{$tag->id}}">
                                                         {{$tag->name}}
                                                     </label>
@@ -102,7 +109,7 @@
                                     </div>
                                 </div>
                                 <div class="card-footer">
-                                    <button name="submit" type="submit" class="btn btn-primary">Submit</button>
+                                    <button id="submit" name="submit" type="submit" class="btn btn-primary">Submit</button>
                                 </div>
                             </form>
                         </div>
@@ -111,6 +118,7 @@
             </div>
         </section>
     </div>
+    <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
     <script language="javascript">
         function ChangeToSlug() {
             var title, slug;
@@ -157,5 +165,35 @@
             .catch( error => {
                 console.error( error );
             } );
+    </script>
+    <script>
+
+        //check form store post
+
+        $(document).ready(function(){
+           $("#submit").click(function (){
+               var title = $("#title").val();
+               var check = $('.icheck-primary').find('input[type=checkbox]:checked').length;
+               var category = $("#category").val();
+
+               if (title == ""){
+                   alert("Pls fill in title input");
+                   $("#title").focus();
+                   return false;
+               }
+
+               if (category == 0){
+                   alert("Pls select a category");
+                   return false;
+               }
+
+               if (check == 0){
+                   alert("Pls choice a tag");
+                   return false;
+               }
+
+               return true;
+           })
+        });
     </script>
 @endsection
