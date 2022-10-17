@@ -6,6 +6,7 @@
     </a>
 
     <div class="sidebar">
+
         <div class="user-panel mt-3 pb-3 mb-3 d-flex">
             <div class="image">
                 <img src="{{asset("/asset_admin/img/user2-160x160.jpg")}}" class="img-circle elevation-2" alt="User Image">
@@ -68,6 +69,14 @@
                                 <a href="{{route("admin.category.view")}}" class="nav-link">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>Category</p>
+                                </a>
+                            </li>
+                        @endcan
+                        @can('post manage')
+                            <li class="nav-item">
+                                <a href="{{route("admin.post.view")}}" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Post</p>
                                 </a>
                             </li>
                         @endcan
