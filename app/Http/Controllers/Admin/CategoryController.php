@@ -20,7 +20,7 @@ class CategoryController extends Controller
 
     public function index()
     {
-        $categories = CategoryService::getCategorys();
+        $categories = CategoryService::getCategory();
 
         return view("admin.pages.category.category_table", [
             "title" => "Category",
@@ -30,7 +30,7 @@ class CategoryController extends Controller
 
     public function create()
     {
-        $categories = CategoryService::getCategorys();
+        $categories = CategoryService::getCategory();
 
         return view("admin.pages.category.category_form", [
             "title" => "Category",
@@ -68,7 +68,7 @@ class CategoryController extends Controller
         if (count($this->categoryService->getEdit($id)) != 0){
             $category = $this->categoryService->getEdit($id);
             $category = $category[0];
-            $categories = CategoryService::getCategorys();
+            $categories = CategoryService::getCategory();
         }else{
             return redirect()->back();
         }

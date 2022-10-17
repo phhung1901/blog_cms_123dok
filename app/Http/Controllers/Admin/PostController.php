@@ -14,17 +14,12 @@ class PostController extends Controller
 {
     public function index()
     {
-        $posts = PostService::getPosts();
-
-        return view("admin.pages.post.post_table", [
-           "title" => "Post",
-           "posts" => $posts
-        ]);
+        //
     }
 
     public function create()
     {
-        $categories = CategoryService::getCategorys();
+        $categories = CategoryService::getCategory();
         $tags = TagService::getTag();
         $post_status = PostStatus::getKeys();
 
@@ -39,18 +34,22 @@ class PostController extends Controller
     public function store(Request $request)
     {
         $validate = PostService::validate($request);
+        $titile = $request->get("title");
+        $slug = $request->get("slug");
 
         //check file isset
         if ($request->hasFile("file")){
-            $path = PostService::factoryFile($request);
+            PostService::factoryFile($request);
         }
 
 
         if ($validate->fails()){
             return redirect()->route("admin.post.create")->with("error", "Pls check your form!");
         }else{
-            PostService::createPost($request, $path);
+            $post = new Post();
+//            $post->title =
         }
+
     }
 
     public function show($id)

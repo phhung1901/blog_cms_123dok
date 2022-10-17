@@ -42,8 +42,7 @@
                             <label for="remember">
                                 Remember Me
                             </label>
-                        </div>323
-
+                        </div>
                     </div>
 
                     <div class="col-4">
