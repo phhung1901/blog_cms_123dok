@@ -50,7 +50,7 @@
                                     </div>
                                     <div class="form-group">
                                         <label for="slug">Slug</label>
-                                        <input disabled name="slug" type="text"
+                                        <input name="slug" type="text"
                                                class="form-control" id="slug">
                                     </div>
                                     <div class="form-group">

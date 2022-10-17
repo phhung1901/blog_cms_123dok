@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Services\Admin\Category\CategoryService;
 use App\Http\Services\Admin\Post\PostService;
 use App\Http\Services\Admin\Tag\TagService;
+use App\Models\Post;
 use Illuminate\Http\Request;
 
 class PostController extends Controller
@@ -33,11 +34,20 @@ class PostController extends Controller
     public function store(Request $request)
     {
         $validate = PostService::validate($request);
+        $titile = $request->get("title");
+        $slug = $request->get("slug");
+
+        //check file isset
+        if ($request->hasFile("file")){
+            PostService::factoryFile($request);
+        }
+
 
         if ($validate->fails()){
             return redirect()->route("admin.post.create")->with("error", "Pls check your form!");
         }else{
-            dd($request->all());
+            $post = new Post();
+//            $post->title =
         }
 
     }
