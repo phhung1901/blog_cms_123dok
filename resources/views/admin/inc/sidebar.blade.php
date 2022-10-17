@@ -72,6 +72,14 @@
                                 </a>
                             </li>
                         @endcan
+                            @can('post manage')
+                                <li class="nav-item">
+                                    <a href="{{route("admin.post.view")}}" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Post</p>
+                                    </a>
+                                </li>
+                            @endcan
                     </ul>
                 </li>
                 <li class="nav-item">

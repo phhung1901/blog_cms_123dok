@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
 class CategoryService{
-    public static function getCategory(): Collection
+    public static function getCategorys(): Collection
     {
         return Category::orderBy("parent_id", "ASC")->get();
     }
@@ -60,5 +60,11 @@ class CategoryService{
             $category->parent_id = $request->get("parent_id");
         }
         $category->save();
+    }
+
+    public static function getCategory($id){
+        $category = Category::find($id)->toArray();
+        $category = $category["name"];
+        return$category;
     }
 }
