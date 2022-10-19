@@ -3,20 +3,14 @@
 namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
-use App\Http\Services\Admin\Category\CategoryService;
 use Illuminate\Http\Request;
 
-class HomeController extends Controller
+class UserLoginController extends Controller
 {
 
     public function index()
     {
-        $categories = CategoryService::getCategorys();
-
-        return view("client.pages.home", [
-            "title" => "Home",
-            "categories" => $categories
-        ]);
+        return view();
     }
 
 
