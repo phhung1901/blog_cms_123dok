@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Validator;
 
 class UserService{
 
-    public function getUsers(): Collection
+    public static function getUsers(): Collection
     {
         return User::all();
     }

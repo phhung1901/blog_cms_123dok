@@ -46,12 +46,18 @@
                                 <div class="card-body">
                                     <div class="form-group">
                                         <label for="title">Post title <span class="fillable">*</span></label>
-                                        <input onkeyup="ChangeToSlug();" name="title" type="text" class="form-control" id="title">
+                                        <input onkeyup="ChangeToSlug();" name="title" type="text" class="form-control"
+                                               id="title">
                                     </div>
                                     <div class="form-group">
                                         <label for="slug">Slug</label>
                                         <input name="slug" type="text"
                                                class="form-control" id="slug">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="description">Description</label>
+                                        <input name="description" type="text"
+                                               class="form-control" id="description">
                                     </div>
                                     <div class="form-group">
                                         <label for="file">File</label>

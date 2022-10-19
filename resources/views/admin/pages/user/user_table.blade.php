@@ -68,7 +68,7 @@
                                                                 tabindex="0">{{$user["name"]}}</td>
                                                             <td>{{$user["email"]}}</td>
                                                             <td>{{Str::remove('"', trim($user->getRoleNames(), "[]"))}}</td>
-                                                            <td>{{Str::remove('"', trim(\App\Http\Services\User\UserService::getUserPermissions($user["id"]), "[]"))}}</td>
+                                                            <td>{{Str::remove('"', trim(\App\Http\Services\Admin\User\UserService::getUserPermissions($user["id"]), "[]"))}}</td>
                                                             {{--                                                            <td>{{$user["created_at"]}}</td>--}}
                                                             {{--                                                            <td>{{$user["updated_at"]}}</td>--}}
                                                             <td>

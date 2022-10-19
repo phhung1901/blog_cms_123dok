@@ -882,6 +882,9 @@
 .container .body .detail_body .banner_post img {
     margin-top: 36px;
     margin-bottom: 36px;
+    width: 936px;
+    height: 628px;
+    border-radius: 24px;
 }
 
 .container .body .detail_body .first_content p {
@@ -984,22 +987,34 @@
 .container .body .list_blog_body .title_respon{
     display: none;
 }
-.container .body .detail_reference .show_all img{
+
+.container .body .detail_reference .show_all img {
     display: none;
 }
-.container .body .list_blog_body{
+
+.container .body .list_blog_body {
     margin-top: 36px;
 }
-.container .body .detail_body .more_detail_post .action_post_respon_1{
+
+.container .body .detail_body .more_detail_post .action_post_respon_1 {
     display: none;
 }
+
+#tag_post {
+    /*border: 1px solid black;*/
+    padding: 10px 15px;
+    border-radius: 24px;
+    background-color: #ebedf1;
+    margin-right: 10px;
+}
+
+
 /* End Detail */
 
 
-
 /* Responsive */
-@media (max-width: 1024px){
-    .header{
+@media (max-width: 1024px) {
+    .header {
         width: 1024px;
     }
     .header .action_header #btn_post{

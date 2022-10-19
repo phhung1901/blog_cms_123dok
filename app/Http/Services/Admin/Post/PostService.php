@@ -18,6 +18,7 @@ class PostService
         $validate = Validator::make($request->all(), [
             'title' => 'required|min:8|max:100',
             'slug' => 'required',
+            'description' => 'required|min:15|max:250'
         ]);
 
         return $validate;
@@ -35,16 +36,19 @@ class PostService
     {
         $title = $request->get("title");
         $slug = $request->get("slug");
+        $description = $request->get("description");
         $content = $request->get("content");
         $category_id = $request->get("category");
         $tag_id = $request->get("tag");
         $status = $request->get("status");
         $status = PostStatus::getValue($status);
 
+//        dd($description);
 
         $post = new Post();
         $post->title = $title;
         $post->slug = $slug;
+        $post->description = $description;
         $post->content = $content;
         $post->thumbnail = $path;
         $post->author_id = Auth::user()->id;

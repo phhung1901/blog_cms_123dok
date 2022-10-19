@@ -47,7 +47,16 @@ class PostController extends Controller
     public function show($slug)
     {
         $post = UserService::getPost($slug);
-        dd($post);
+        $post = $post[0];
+        $posts = array_slice(UserService::getPosts($post["category_slug"]), 0, 2);
+        $tags = UserService::getPostTags($post["id"]);
+
+        return view("client.pages.detail", [
+            "title" => "Detail",
+            "post" => $post,
+            "tags" => $tags,
+            "posts" => $posts
+        ]);
     }
 
 

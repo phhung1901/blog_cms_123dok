@@ -82,7 +82,7 @@
                                                             </td>
                                                             <td>
                                                                 @php
-                                                                    $user = \App\Http\Services\User\UserService::getUser($post["author_id"])->toArray();
+                                                                    $user =\App\Http\Services\Admin\User\UserService::getUser($post["author_id"])->toArray();
                                                                 @endphp
                                                                 {{$user["name"]}}
                                                             </td>

@@ -68,12 +68,7 @@
                                             </span>
                                         </div>
                                         <div class="content_post">
-                                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sit diam at
-                                                feugiat purus,
-                                                interdum
-                                                porta sed. Ac ut hendrerit enim et scelerisque nullam lorem. Libero mi
-                                                velit id
-                                                vitae...</p>
+                                            <p>{{$post["description"]}}</p>
                                         </div>
                                     </div>
                                 </div>

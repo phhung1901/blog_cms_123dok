@@ -10,7 +10,7 @@
         <img src="/asset/images/logo_res.png" alt="">
     </div>
     <div class="logo_header">
-        <a href="./index.html"><img src="/asset/images/logo.PNG" alt="logo"></a>
+        <a href="{{route("user.home")}}"><img src="/asset/images/logo.PNG" alt="logo"></a>
     </div>
     <div class="action_header">
         <div class="dot_heart">

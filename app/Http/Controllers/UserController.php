@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Http\Services\Admin\Role\RoleService;
-use App\Http\Services\User\UserService;
+
+//use App\Http\Services\User\UserService;
+use App\Http\Services\Admin\User\UserService;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -22,8 +24,7 @@ class UserController extends Controller
     public function index()
     {
 
-        $users = $this->userService->getUsers();
-
+        $users = UserService::getUsers();
         return view("admin.pages.user.user_table", [
             "title" => "User",
             "users" => $users
