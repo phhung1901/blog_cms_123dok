@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Services\Admin\Role\RoleService;
-use App\Http\Services\Admin\User\UserService;
+use App\Http\Services\User\UserService;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;

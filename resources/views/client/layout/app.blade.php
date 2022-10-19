@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 
-@include("client.layout.header")
+@include("client.inc.header")
 
 <body>
 <!-- start header -->
-@include("client.layout.menu")
+@include("client.inc.menu")
 <!-- end header -->
 
 <!-- start container -->

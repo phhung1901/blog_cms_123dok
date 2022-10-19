@@ -340,6 +340,9 @@
 .container .body .img_post #img_post {
     position: absolute;
     z-index: 1;
+    width: 336px;
+    height: 220px;
+    border-radius: 24px;
 }
 
 .container .body .img_post #save_post {
@@ -667,13 +670,13 @@
     font-size: 16px;
     line-height: 28px;
     /* or 175% */
-    
+
     letter-spacing: 0.005em;
-    
+
     /* Primary/Black */
-    
+
     color: #3B4144;
-    
+
     opacity: 0.5;
     margin-top: 8px;
 }
@@ -1087,7 +1090,7 @@
         border-radius: 36px;
         color: #FFFFFF;
     }
-    
+
     .container .menu_body .btn_menu_body {
         text-decoration: none;
         font-size: 18px;
@@ -1227,7 +1230,7 @@
         border-radius: 36px;
         color: #FFFFFF;
     }
-    
+
     .container .menu_body .btn_menu_body {
         text-decoration: none;
         font-size: 14px;
@@ -1289,19 +1292,19 @@
         line-height: 21px;
     }
     .container .body .body_post .slection_post .post_detail .categories_post,
-    .container .body .body_post .more_post .post_detail .categories_post{
+    .container .body .body_post .more_post .post_detail .categories_post {
         font-weight: 600;
         font-size: 13px;
         line-height: 20px;
         /* identical to box height, or 152% */
-        
-        letter-spacing: 0.0125em;       
+
+        letter-spacing: 0.0125em;
     }
     .container .body .body_post .slection_post .post_detail .user_post,
-    .container .body .body_post .more_post .post_detail .user_post{
+    .container .body .body_post .more_post .post_detail .user_post {
         font-weight: 400;
         font-size: 12px;
-        line-height: 18px;        
+        line-height: 18px;
     }
     .container .body .body_post .slection_post .post_detail .date_post,
     .container .body .body_post .more_post .post_detail .date_post{
@@ -1385,9 +1388,9 @@
         width: 161px;
         height: 105.42px;
     }
-    .container .body .list_blog_body .img_post #img_post{
+    .container .body .list_blog_body .img_post #img_post {
         width: 161px;
-        height: 105.42px;       
+        height: 105.42px;
     }
     .container .body .list_blog_body .list_blog .blog .detail_blog .post_detail,
     .container .body .list_blog_body .list_blog .blog .detail_blog .post_title{
@@ -1407,14 +1410,14 @@
         font-size: 14px;
         line-height: 21px;
         /* or 150% */
-        
+
         letter-spacing: 0.005em;
-        
+
         /* Primary/Black */
-        
+
         color: #3B4144;
-        
-        opacity: 0.5;       
+
+        opacity: 0.5;
     }
     .container .body .list_blog_body .img_post #save_post{
         top: 67.5px;
@@ -1422,7 +1425,7 @@
     }
     .container .body .list_blog_body .title_respon{
         display: inline;
-        
+
     }
     .container .body .list_blog_body .title_respon .post_title p{
         width: 331px;
@@ -1445,11 +1448,11 @@
         font-size: 13px;
         line-height: 20px;
         /* identical to box height, or 152% */
-        
+
         letter-spacing: 0.0125em;
-        
+
         /* Secondary/Green */
-        
+
         color: #007882;
     }
     .container .body .list_blog_body .title_respon .post_detail .user_post{
@@ -1457,10 +1460,10 @@
         font-size: 12px;
         line-height: 18px;
         /* identical to box height, or 150% */
-        
-        
+
+
         /* Primary/Black */
-        
+
         color: #3B4144;
     }
     .container .body .list_blog_body .title_respon .post_detail .date_post{
@@ -1468,12 +1471,12 @@
         font-size: 12px;
         line-height: 18px;
         /* identical to box height, or 150% */
-        
-        
+
+
         /* Primary/Black */
-        
+
         color: #3B4144;
-        
+
         opacity: 0.5;
     }
     .container .body .list_blog_body .list_blog .blog{
@@ -1496,16 +1499,16 @@
         font-size: 21px;
         line-height: 27px;
         /* or 129% */
-        
+
         letter-spacing: -0.01em;
-        
+
         /* Primary/Black */
-        
+
         color: #3B4144;
     }
     .container .body .detail_body .more_detail_post{
         flex-direction: column;
-        
+
     }
     .container .body .detail_body .more_detail_post .action_post{
         display: none;
@@ -1513,7 +1516,7 @@
     .container .body .detail_body .more_detail_post .action_post_respon{
         display: inline;
         margin-top: 8px;
-    }    
+    }
     .container .body .detail_body .more_detail_post{
         align-items: unset;
     }
@@ -1542,12 +1545,12 @@
         font-size: 14px;
         line-height: 21px;
         /* identical to box height, or 150% */
-        
-        
+
+
         /* Primary/Black */
-        
+
         color: #3B4144;
-        
+
     }
     .container .body .detail_reference .show_all img{
         display: inline;
