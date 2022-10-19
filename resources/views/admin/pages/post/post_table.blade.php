@@ -91,12 +91,12 @@
                                                             {{--                                                            <td>{{$post["updated_at"]}}</td>--}}
                                                             <td>
                                                                 <a onclick="return confirm('Bạn có muốn xóa ?')"
-                                                                   href="{{route("admin.permission.destroy", [$post["id"]])}}">
+                                                                   href="{{route("admin.post.destroy", [$post["id"]])}}">
                                                                     <div id="category_destroy" class="btn btn-danger">
                                                                         Delete
                                                                     </div>
                                                                 </a>
-                                                                <a href="{{route("admin.tag.edit", [$post["id"]])}}">
+                                                                <a href="{{route("admin.post.edit", [$post["id"]])}}">
                                                                     <div class="btn btn-primary">Update</div>
                                                                 </a>
                                                             </td>

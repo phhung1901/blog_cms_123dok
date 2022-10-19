@@ -200,7 +200,7 @@
 }
 
 .container .menu_body {
-    height: 39px;
+    min-height: 39px;
     width: 100%;
     display: flex;
     flex-direction: row;

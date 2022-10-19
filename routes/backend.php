@@ -47,6 +47,8 @@ Route::prefix("admin")->group(function (){
             Route::get("/form", [PostController::class, "create"])->name("admin.post.create");
             Route::post("/form/submit", [PostController::class, "store"])->name("admin.post.store");
             Route::get("/table", [PostController::class, "index"])->name("admin.post.view");
+            Route::get("/action/delete/{id}", [PostController::class, "destroy"])->name("admin.post.destroy");
+            Route::get("/action/update/{id}", [PostController::class, "edit"])->name("admin.post.edit");
         });
 
 

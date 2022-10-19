@@ -67,4 +67,17 @@ class PostService
     {
         return Post::find($post_id)->tags;
     }
+
+    public static function getPost($id)
+    {
+        return Post::find($id);
+    }
+
+    public static function getUpdate($id)
+    {
+        return Post::where("posts.id", $id)
+            ->join("categories", "posts.category_id", "=", "categories.id")
+            ->select("posts.*", "categories.name as category")
+            ->get()->toArray();
+    }
 }

@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Services\Admin\Category\CategoryService;
 use App\Http\Services\Admin\Post\PostService;
 use App\Http\Services\Admin\Tag\TagService;
+use App\Http\Services\User\UserService;
 use App\Models\Post;
 use Illuminate\Http\Request;
 
@@ -61,16 +62,42 @@ class PostController extends Controller
 
     public function edit($id)
     {
-        //
+        $post = PostService::getUpdate($id);
+        if (count($post) != 0) {
+            $post = $post[0];
+            $categories = CategoryService::getCategorys()->toArray();
+            $post_tag = UserService::getPostTags($id);
+            $tags = TagService::getTag();
+            $status = PostStatus::getKeys();
+
+
+            return view("admin.pages.post.post_update", [
+                "title" => "Update",
+                "post" => $post,
+                "categories" => $categories,
+                "post_tag" => $post_tag,
+                "tags" => $tags,
+                "status" => $status
+            ]);
+        } else {
+            return redirect()->route("admin.post.view");
+        }
     }
 
     public function update(Request $request, $id)
     {
-        //
+
     }
 
     public function destroy($id)
     {
-        //
+        $post = PostService::getPost($id);
+        if ($post != null) {
+            $post = $post->toArray();
+            Post::destroy($post["id"]);
+            return redirect()->route("admin.post.view");
+        } else {
+            return redirect()->back();
+        }
     }
 }
