@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Http\Services\Admin\PostTag;
 
 use App\Models\PostTag;

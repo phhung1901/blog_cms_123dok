@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\LogController;
 use App\Http\Controllers\Admin\LoginController;
 use App\Http\Controllers\Admin\TagController;
 use App\Http\Controllers\RoleController;
@@ -22,8 +23,11 @@ Route::prefix("admin")->group(function (){
         //Dashboard
         Route::get('', [DashboardController::class, "index"])->name('admin.dashboard.view');
 
+        //Logs
+        Route::get("/logs", [LogController::class, "index"])->name("admin.log.view");
+
         //Category
-        Route::prefix("/category")->group(function (){
+        Route::prefix("/category")->group(function () {
             Route::get("/table", [CategoryController::class, "index"])->name("admin.category.view");
             Route::get("/form", [CategoryController::class, "create"])->name("admin.category.create");
             Route::post("/form/submit", [CategoryController::class, "store"])->name("admin.category.store");
