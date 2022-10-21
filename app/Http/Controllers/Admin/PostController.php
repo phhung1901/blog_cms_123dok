@@ -10,6 +10,7 @@ use App\Http\Services\Admin\Tag\TagService;
 use App\Http\Services\User\UserService;
 use App\Models\Post;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class PostController extends Controller
 {
@@ -86,7 +87,10 @@ class PostController extends Controller
 
     public function update(Request $request, $id)
     {
-
+        if (PostService::update($request, $id)) {
+            return redirect()->route("admin.post.view");
+        }
+        return redirect()->back();
     }
 
     public function destroy($id)
@@ -94,6 +98,7 @@ class PostController extends Controller
         $post = PostService::getPost($id);
         if ($post != null) {
             $post = $post->toArray();
+            Storage::delete($post['thumbnail']);
             Post::destroy($post["id"]);
             return redirect()->route("admin.post.view");
         } else {

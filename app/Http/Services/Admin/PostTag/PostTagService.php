@@ -16,4 +16,22 @@ class PostTagService
             $post_tag->save();
         }
     }
+
+    public static function update($post_id, $tags)
+    {
+        $old = PostTag::where("post_id", $post_id)->delete();
+
+        foreach ($tags as $tag) {
+            $post_tag = PostTag::updateOrCreate(
+                [
+                    "post_id" => $post_id,
+                    "tag_id" => $tag
+                ],
+                [
+                    "post_id" => $post_id,
+                    "tag_id" => $tag,
+                ]
+            );
+        }
+    }
 }

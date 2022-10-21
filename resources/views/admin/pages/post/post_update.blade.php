@@ -41,7 +41,8 @@
                                     </div>
                                 </div>
                             @endif
-                            <form action="" method="POST" enctype="multipart/form-data">
+                            <form action="{{route('admin.post.update', [$post['id']])}}" method="POST"
+                                  enctype="multipart/form-data">
                                 @csrf
                                 <div class="card-body">
                                     <div class="form-group">
@@ -64,13 +65,19 @@
                                         <label for="file">File</label>
                                         <div class="input-group">
                                             <div class="custom-file">
-                                                <input name="file" type="file" class="custom-file-input" id="file">
+                                                <input value="{{$post['thumbnail']}}" name="file" type="file"
+                                                       class="custom-file-input" id="file">
                                                 <label class="custom-file-label" for="file">Choose file</label>
                                             </div>
                                             <div class="input-group-append">
                                                 <span class="input-group-text">Upload</span>
                                             </div>
                                         </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Old file</label>
+                                        <img style="width: -webkit-fill-available"
+                                             src="{{Storage::url($post['thumbnail'])}}" alt="">
                                     </div>
                                     <div class="form-group">
                                         <div>

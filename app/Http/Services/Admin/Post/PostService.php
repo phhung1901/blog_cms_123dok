@@ -80,4 +80,41 @@ class PostService
             ->select("posts.*", "categories.name as category")
             ->get()->toArray();
     }
+
+    public static function update(Request $request, $id)
+    {
+        $title = $request->get("title");
+        $slug = $request->get("slug");
+        $description = $request->get("description");
+        $content = $request->get("content");
+        $category_id = $request->get("category");
+        $tag_id = $request->get("tag");
+        $status = $request->get("status");
+        $status = PostStatus::getValue($status);
+        $file = $request->hasFile("file");
+
+        $post = Post::updateOrCreate(
+            ["id" => $id],
+            [
+                "title" => $title,
+                "slug" => $slug,
+                "description" => $description,
+                "content" => $content,
+                "category_id" => $category_id,
+                "status" => $status
+            ]
+        );
+
+        if ($file) {
+            $old_path = $post->thumbnail;
+            Storage::delete($old_path);
+            $path = PostService::factoryFile($request);
+            $post->thumbnail = $path;
+            $post->save();
+        }
+
+        $tag = PostTagService::update($id, $tag_id);
+
+        return true;
+    }
 }

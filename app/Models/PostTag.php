@@ -11,6 +11,8 @@ class PostTag extends Model
 
     protected $table = "post_tag";
 
+    public $timestamps = false;
+
     protected $guarded = [];
 
     public function posts()
