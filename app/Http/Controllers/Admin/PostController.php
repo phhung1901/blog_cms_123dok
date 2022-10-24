@@ -105,4 +105,14 @@ class PostController extends Controller
             return redirect()->back();
         }
     }
+
+    public function order($col)
+    {
+        $posts = PostService::sortPost($col);
+
+        return view("admin.pages.post.post_table", [
+            "title" => "Post",
+            "posts" => $posts
+        ]);
+    }
 }

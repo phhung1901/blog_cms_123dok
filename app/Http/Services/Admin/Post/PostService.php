@@ -117,4 +117,11 @@ class PostService
 
         return true;
     }
+
+
+    public static function sortPost($col)
+    {
+        return Post::orderBy($col, "ASC")->get();
+    }
+
 }

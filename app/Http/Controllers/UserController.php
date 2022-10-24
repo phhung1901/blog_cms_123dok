@@ -28,8 +28,6 @@ class UserController extends Controller
 
         $users = UserService::getUsers();
 
-
-
         return view("admin.pages.user.user_table", [
             "title" => "User",
             "users" => $users

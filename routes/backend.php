@@ -54,6 +54,7 @@ Route::prefix("admin")->group(function (){
             Route::get("/action/delete/{id}", [PostController::class, "destroy"])->name("admin.post.destroy");
             Route::get("/action/update/{id}", [PostController::class, "edit"])->name("admin.post.edit");
             Route::post("/form/update/{id}", [PostController::class, "update"])->name("admin.post.update");
+            Route::get("table/sort/{col}", [PostController::class, "order"])->name("admin.post.sort");
         });
 
 
