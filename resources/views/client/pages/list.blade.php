@@ -45,8 +45,12 @@
                                 </div>
                                 <div class="blog">
                                     <div class="img_post">
+                                        @php
+                                            $path = $post['thumbnail'];
+                                            $path = trim($path, "public");
+                                        @endphp
                                         <a href="{{route("user.detail.post", [$post['slug']])}}"><img id="img_post"
-                                                                                                      src="{{\Illuminate\Support\Facades\Storage::url($post["thumbnail"])}}"
+                                                                                                      src="{{asset('storage'.$path)}}"
                                                                                                       alt=""></a>
                                         <img id="save_post" src="/asset/images/Vector.png" alt="">
                                     </div>

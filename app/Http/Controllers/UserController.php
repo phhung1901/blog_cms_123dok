@@ -10,6 +10,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
+use phpDocumentor\Reflection\Types\Static_;
 use Spatie\Permission\Traits\HasRoles;
 
 class UserController extends Controller
@@ -26,6 +27,9 @@ class UserController extends Controller
     {
 
         $users = UserService::getUsers();
+
+
+
         return view("admin.pages.user.user_table", [
             "title" => "User",
             "users" => $users
