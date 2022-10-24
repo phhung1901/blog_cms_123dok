@@ -12,3 +12,4 @@
 <link rel="stylesheet" href="{{asset("/asset_admin/css/adminlte.min.css?v=3.2.0")}}">
 {{--CK editor--}}
 <script src="https://cdn.ckeditor.com/ckeditor5/35.2.1/classic/ckeditor.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js"></script>

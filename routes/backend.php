@@ -23,9 +23,6 @@ Route::prefix("admin")->group(function (){
         //Dashboard
         Route::get('', [DashboardController::class, "index"])->name('admin.dashboard.view');
 
-        //Logs
-        Route::get("/logs", [LogController::class, "index"])->name("admin.log.view");
-
         //Category
         Route::prefix("/category")->group(function () {
             Route::get("/table", [CategoryController::class, "index"])->name("admin.category.view");
