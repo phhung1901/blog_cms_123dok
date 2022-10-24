@@ -4,7 +4,7 @@
 - [X] Login, Logout
 - [X] Quản lý user và phân quyền
 - [X] CRUD Article/Category/Tag
-- [ ] Filter Dứ liệu theo một số trường
+- [X] Filter Dứ liệu theo một số trường
 - [ ] Kết nối và lưu trữ ảnh bằng MinIO thông qua s3 driver
 - [X] Hiện thị Logs
 - [X] Dashboard
