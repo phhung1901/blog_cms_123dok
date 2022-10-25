@@ -13,3 +13,4 @@
 {{--CK editor--}}
 <script src="https://cdn.ckeditor.com/ckeditor5/35.2.1/classic/ckeditor.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js"></script>
+<script src="https://kit.fontawesome.com/d403942475.js" crossorigin="anonymous"></script>

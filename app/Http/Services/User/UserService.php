@@ -33,4 +33,12 @@ class UserService
     {
         return Post::find($id)->tags->toArray();
     }
+
+    public static function updateView($slug)
+    {
+        $post = Post::where("slug", $slug)->get();
+        $view = $post[0]->view;
+        $view++;
+        Post::where("slug", $slug)->update(["view" => $view]);
+    }
 }

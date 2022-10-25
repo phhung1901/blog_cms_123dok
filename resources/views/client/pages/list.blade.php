@@ -56,7 +56,7 @@
                                     </div>
                                     <div class="detail_blog">
                                         <div class="post_title">
-                                            <p>{{$post["title"]}}</p>
+                                            <p>{{$post["title"]}} <i class="fa-solid fa-eye"></i></p>
                                         </div>
                                         <div class="post_detail">
                                             <span class="categories_post">{{$post["category"]}}</span>
@@ -69,6 +69,10 @@
                                                     $date = date('d-m-Y', strtotime($date));
                                                     echo $date;
                                                 @endphp
+                                            </span>
+                                            &bull;
+                                            <span class="view">
+                                                {{$post["view"]}}
                                             </span>
                                         </div>
                                         <div class="content_post">
