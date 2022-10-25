@@ -40,4 +40,24 @@ class UserLoginController extends Controller
         Auth::logout();
         return redirect()->route("user.login.view");
     }
+
+    public function create()
+    {
+        return view("client.auth.register", [
+            "title" => "Register"
+        ]);
+    }
+
+    public function store(Request $request)
+    {
+        $validate = UserService::validateRegister($request);
+
+        if (!$validate->fails()) {
+            UserService::createUser($request);
+            return redirect()->route("user.home");
+        } else {
+            $data = $request->all();
+            return redirect()->back()->with("error", "Pls, check register")->with(['data' => $data]);
+        }
+    }
 }

@@ -6,12 +6,14 @@ use App\Http\Controllers\User\UserLoginController;
 
 Route::prefix("/")->group(function () {
     //Auth
+
+    //Login
     Route::get("/login", [UserLoginController::class, "showLoginForm"])->name("user.login.view");
-//    Route::get("/login", function (){
-//        dd("ok");
-//    })->name("user.login.view");
     Route::post("/login/submit", [UserLoginController::class, "login"])->name("user.login.submit");
     Route::get("/logout", [UserLoginController::class, "logout"])->name("user.logout");
+    //Register
+    Route::get("/register", [UserLoginController::class, "create"])->name("user.register.view");
+    Route::post("/register/submit", [UserLoginController::class, "store"])->name("user.register.store");
 
     //Post
     Route::get("", [HomeController::class, "index"])->name("user.home");

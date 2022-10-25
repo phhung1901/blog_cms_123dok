@@ -20,38 +20,40 @@ Route::prefix("admin")->group(function (){
     Route::post("/register/submit", [UserController::class, "store"])->name("admin.register.submit");
 
     Route::middleware('auth_admin:backend')->group(function () {
-        //Dashboard
-        Route::get('', [DashboardController::class, "index"])->name('admin.dashboard.view');
+        Route::group(['middleware' => ['role:super-admin|admin|user']], function () {
+            //Dashboard
+            Route::get('', [DashboardController::class, "index"])->name('admin.dashboard.view');
 
-        //Category
-        Route::prefix("/category")->group(function () {
-            Route::get("/table", [CategoryController::class, "index"])->name("admin.category.view");
-            Route::get("/form", [CategoryController::class, "create"])->name("admin.category.create");
-            Route::post("/form/submit", [CategoryController::class, "store"])->name("admin.category.store");
-            Route::get("/action/delete/{id}", [CategoryController::class, "destroy"])->name("admin.category.destroy");
-            Route::get("/action/update/{id}", [CategoryController::class, "edit"])->name("admin.category.edit");
-            Route::post("form/update/{id}", [CategoryController::class, "update"])->name("admin.category.update");
-        });
+            //Category
+            Route::prefix("/category")->group(function () {
+                Route::get("/table", [CategoryController::class, "index"])->name("admin.category.view");
+                Route::get("/form", [CategoryController::class, "create"])->name("admin.category.create");
+                Route::post("/form/submit", [CategoryController::class, "store"])->name("admin.category.store");
+                Route::get("/action/delete/{id}", [CategoryController::class, "destroy"])->name("admin.category.destroy");
+                Route::get("/action/update/{id}", [CategoryController::class, "edit"])->name("admin.category.edit");
+                Route::post("form/update/{id}", [CategoryController::class, "update"])->name("admin.category.update");
+            });
 
-        //Tag
-        Route::prefix("/tag")->group(function (){
-            Route::get("/form", [TagController::class, "create"])->name("admin.tag.create");
-            Route::post("/form/submit", [TagController::class, "store"])->name("admin.tag.store");
-            Route::get("/table", [TagController::class, "index"])->name("admin.tag.view");
-            Route::get("/action/delete/{id}", [TagController::class, "destroy"])->name("admin.tag.destroy");
-            Route::get("/action/update/{id}", [TagController::class, "edit"])->name("admin.tag.edit");
-            Route::post("/form/update/{id}", [TagController::class, "update"])->name("admin.tag.update");
-        });
+            //Tag
+            Route::prefix("/tag")->group(function () {
+                Route::get("/form", [TagController::class, "create"])->name("admin.tag.create");
+                Route::post("/form/submit", [TagController::class, "store"])->name("admin.tag.store");
+                Route::get("/table", [TagController::class, "index"])->name("admin.tag.view");
+                Route::get("/action/delete/{id}", [TagController::class, "destroy"])->name("admin.tag.destroy");
+                Route::get("/action/update/{id}", [TagController::class, "edit"])->name("admin.tag.edit");
+                Route::post("/form/update/{id}", [TagController::class, "update"])->name("admin.tag.update");
+            });
 
-        //Post
-        Route::prefix("/post")->group(function (){
-            Route::get("/form", [PostController::class, "create"])->name("admin.post.create");
-            Route::post("/form/submit", [PostController::class, "store"])->name("admin.post.store");
-            Route::get("/table", [PostController::class, "index"])->name("admin.post.view");
-            Route::get("/action/delete/{id}", [PostController::class, "destroy"])->name("admin.post.destroy");
-            Route::get("/action/update/{id}", [PostController::class, "edit"])->name("admin.post.edit");
-            Route::post("/form/update/{id}", [PostController::class, "update"])->name("admin.post.update");
-            Route::get("table/sort/{col}", [PostController::class, "order"])->name("admin.post.sort");
+            //Post
+            Route::prefix("/post")->group(function () {
+                Route::get("/form", [PostController::class, "create"])->name("admin.post.create");
+                Route::post("/form/submit", [PostController::class, "store"])->name("admin.post.store");
+                Route::get("/table", [PostController::class, "index"])->name("admin.post.view");
+                Route::get("/action/delete/{id}", [PostController::class, "destroy"])->name("admin.post.destroy");
+                Route::get("/action/update/{id}", [PostController::class, "edit"])->name("admin.post.edit");
+                Route::post("/form/update/{id}", [PostController::class, "update"])->name("admin.post.update");
+                Route::get("table/sort/{col}", [PostController::class, "order"])->name("admin.post.sort");
+            });
         });
 
 

@@ -23,10 +23,10 @@
             @if(Auth::check())
                 <div class="text">
                     <p class="name">
-                        Phạm Huy Hưng
+                        {{Auth::user()->name}}
                     </p>
                     <p class="rank">
-                        Proplayer
+                        {{Auth::user()->getRoleNames()}}
                     </p>
                 </div>
                 <div class="avt">

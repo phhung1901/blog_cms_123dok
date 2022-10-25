@@ -3,9 +3,12 @@ namespace App\Http\Services\User;
 
 use App\Models\Category;
 use App\Models\Post;
-use App\Models\PostTag;
+
+//use App\Models\PostTag;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use Spatie\Permission\Models\Role;
 
 class UserService
 {
@@ -52,5 +55,26 @@ class UserService
         ]);
 
         return $validate;
+    }
+
+    public static function validateRegister(Request $request)
+    {
+        $validate = Validator::make($request->all(), [
+            "name" => "required",
+            "email" => "required|email",
+            "password" => "required|min:6|max:100|confirmed",
+            "password_confirmation" => "required|same:password"
+        ]);
+
+        return $validate;
+    }
+
+    public static function createUser(Request $request)
+    {
+        $user = new User();
+        $user->name = $request->get("name");
+        $user->email = $request->get("email");
+        $user->password = bcrypt($request->get("password"));
+        $user->save();
     }
 }
