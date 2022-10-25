@@ -4,6 +4,8 @@ namespace App\Http\Services\User;
 use App\Models\Category;
 use App\Models\Post;
 use App\Models\PostTag;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class UserService
 {
@@ -40,5 +42,15 @@ class UserService
         $view = $post[0]->view;
         $view++;
         Post::where("slug", $slug)->update(["view" => $view]);
+    }
+
+    public static function validateLogin(Request $request)
+    {
+        $validate = Validator::make($request->all(), [
+            'email' => 'required|email',
+            'password' => 'required|min:6'
+        ]);
+
+        return $validate;
     }
 }

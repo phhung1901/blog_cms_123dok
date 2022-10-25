@@ -20,17 +20,26 @@
             <button id="btn_post">Đăng bài</button>
         </div>
         <div class="profile">
-            <div class="text">
-                <p class="name">
-                    Phạm Huy Hưng
-                </p>
-                <p class="rank">
-                    Proplayer
-                </p>
-            </div>
-            <div class="avt">
-                <img src="/asset/images/avt.jpg" alt="avt">
-            </div>
+            @if(Auth::check())
+                <div class="text">
+                    <p class="name">
+                        Phạm Huy Hưng
+                    </p>
+                    <p class="rank">
+                        Proplayer
+                    </p>
+                </div>
+                <div class="avt">
+                    <img src="/asset/images/avt.jpg" alt="avt">
+                </div>
+            @else
+                <div class="create_post" style="margin-right: 30px">
+                    <a href="{{route("user.login.view")}}">
+                        <button id="btn_post">Đăng nhập</button>
+                    </a>
+                </div>
+            @endif
+
         </div>
     </div>
 </div>
