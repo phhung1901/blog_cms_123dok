@@ -80,8 +80,5 @@ class UserLoginController extends Controller
             Auth::loginUsingId($user->id);
             return redirect()->route("user.home");
         }
-        return redirect()->back();
-
-//        dd($check);
     }
 }

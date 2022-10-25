@@ -88,7 +88,8 @@ class UserService
             [
                 'name' => $user->getName(),
                 'email' => $user->getEmail(),
-                'password' => Hash::make($user->getName() . '@' . $user->getId())
+                'password' => Hash::make($user->getName() . '@' . $user->getId()),
+                'google_id' => $user->getId()
             ]
         );
 
