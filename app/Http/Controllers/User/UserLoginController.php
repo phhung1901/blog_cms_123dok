@@ -7,6 +7,7 @@ use App\Http\Services\User\UserService;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Laravel\Socialite\Facades\Socialite;
 
 class UserLoginController extends Controller
 {
@@ -59,5 +60,28 @@ class UserLoginController extends Controller
             $data = $request->all();
             return redirect()->back()->with("error", "Pls, check register")->with(['data' => $data]);
         }
+    }
+
+    public function redirectToProvider($driver)
+    {
+        return Socialite::driver($driver)->redirect();
+    }
+
+    public function handleProviderCallback()
+    {
+        $user = Socialite::driver("google")->user();
+        $check = UserService::checkUser($user->getEmail());
+
+        if ($check != null) {
+            Auth::loginUsingId($check->id);
+            return redirect()->route("user.home");
+        } else {
+            $user = UserService::createGoogleUser($user);
+            Auth::loginUsingId($user->id);
+            return redirect()->route("user.home");
+        }
+        return redirect()->back();
+
+//        dd($check);
     }
 }

@@ -15,6 +15,9 @@ Route::prefix("/")->group(function () {
     Route::get("/register", [UserLoginController::class, "create"])->name("user.register.view");
     Route::post("/register/submit", [UserLoginController::class, "store"])->name("user.register.store");
 
+    //GG login
+    Route::get("/google/login/{driver}", [UserLoginController::class, 'redirectToProvider'])->name("user.google.login");
+    Route::get("/google/callback/", [UserLoginController::class, "handleProviderCallback"]);
     //Post
     Route::get("", [HomeController::class, "index"])->name("user.home");
     Route::get("/list/{slug}", [PostController::class, "index"])->name("user.list");

@@ -7,6 +7,7 @@ use App\Models\Post;
 //use App\Models\PostTag;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Spatie\Permission\Models\Role;
 
@@ -76,5 +77,26 @@ class UserService
         $user->email = $request->get("email");
         $user->password = bcrypt($request->get("password"));
         $user->save();
+    }
+
+    public static function createGoogleUser($user)
+    {
+        $user = User::updateOrCreate(
+            [
+                'google_id' => $user->getId()
+            ],
+            [
+                'name' => $user->getName(),
+                'email' => $user->getEmail(),
+                'password' => Hash::make($user->getName() . '@' . $user->getId())
+            ]
+        );
+
+        return $user;
+    }
+
+    public static function checkUser($email)
+    {
+        return User::where("email", $email)->first();
     }
 }
