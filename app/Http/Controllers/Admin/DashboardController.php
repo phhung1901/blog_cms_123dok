@@ -48,7 +48,7 @@ class DashboardController extends Controller
         $categories = json_encode($categories, JSON_UNESCAPED_UNICODE);
         $postof = json_encode($postof, JSON_UNESCAPED_UNICODE);
 
-        return view("admin.dashboard.index", [
+        return view("admin.dashboard.chart", [
             "title" => "Dashboard",
             "categories" => $categories,
             "postof" => $postof

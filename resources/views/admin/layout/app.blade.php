@@ -15,6 +15,7 @@
 
     @yield("admin.content")
 
+
     @include("admin.inc.footer")
 
 
