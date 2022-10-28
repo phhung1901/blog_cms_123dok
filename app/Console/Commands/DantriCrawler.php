@@ -34,8 +34,21 @@ class DantriCrawler extends Command
 
     public function handle()
     {
-//        dd($this->getCategories());
-        $this->getPosts("Bảng giá ô tô");
+        $categories = $this->getCategories();
+
+        foreach ($categories as $category) {
+            echo $category["text"] . "\n";
+            $posts = $this->getPosts($category["text"]);
+            foreach ($posts as $post) {
+                try {
+                    $url = CrawlerHelper::makeFullUrl($this->home, $post["href"]);
+                    $this->info("Crawing url: " . $url);
+                    $this->getPost($url);
+                } catch (\Exception $e) {
+                    continue;
+                }
+            }
+        }
     }
 
     protected function getHtml(string $url): string
@@ -74,23 +87,20 @@ class DantriCrawler extends Command
         $description = $dom->filter(".singular-container > .singular-sapo")->text();
         $contents = $dom->filter(".singular-container > .singular-content")->html();
 
-        dd($description);
+//        dd($description);
     }
 
     protected function getPosts(string $category)
     {
         $categories = $this->getCategories();
-        try {
-            $category_url = CrawlerHelper::getUrl($this->home, $category, $categories);
-        } catch (TypeErrorException $exception) {
-            return "Message: " . $exception->getMessage();
-        }
+        $category_url = CrawlerHelper::getUrl($this->home, $category, $categories);
 
         $html = $this->getHtml($category_url);
         $dom = new Crawler($html);
 
         $posts = CrawlerHelper::extractAttributes($dom, ".article > .article-item > .article-content > .article-title > a", ["text", "href"]);
-        dd($posts);
+//        dd($posts);
+        return $posts;
     }
 
     protected function getPaginates()
