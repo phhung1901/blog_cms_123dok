@@ -6,6 +6,7 @@ namespace App\Libs;
 
 use League\Uri\Uri;
 use League\Uri\UriResolver;
+use phpDocumentor\Reflection\Types\Boolean;
 use Symfony\Component\DomCrawler\Crawler;
 
 class CrawlerHelper
@@ -65,5 +66,21 @@ class CrawlerHelper
         )->__toString();
 
         return rtrim($href, "/");
+    }
+
+    public static function getUrl($refer, string $category, array $categories)
+    {
+        foreach ($categories as $cate) {
+            if ($cate["text"] == $category) {
+                $category_url = CrawlerHelper::makeFullUrl($refer, $cate['href']);
+                return $category_url;
+            }
+        }
+        return false;
+    }
+
+    public static function hasUrl(string $url): Boolean
+    {
+        return true;
     }
 }

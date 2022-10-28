@@ -6,17 +6,17 @@ use App\Libs\CrawlerHelper;
 use GuzzleHttp\Client;
 use Illuminate\Console\Command;
 use Illuminate\Support\Str;
-use PHPUnit\Exception;
+use Psy\Exception\TypeErrorException;
 use Symfony\Component\DomCrawler\Crawler;
 
-class Kenh14Crawler extends Command
+class DantriCrawler extends Command
 {
     /**
      * The name and signature of the console command.
      *
      * @var string
      */
-    protected $signature = 'command:kenh14_crawler';
+    protected $signature = 'command:dantri_crawler';
 
     /**
      * The console command description.
@@ -30,14 +30,12 @@ class Kenh14Crawler extends Command
      *
      * @var string
      */
-    protected $home = 'https://kenh14.vn/';
-
+    protected $home = 'https://dantri.com.vn/';
 
     public function handle()
     {
-//        $this->getCategories();
-//        $this->getPost('https://kenh14.vn/den-thac-tinh-yeu-o-sapa-lang-nghe-chuyen-tinh-cua-nang-tien-va-chang-tieu-phu-20221026112541057.chn');
-        $this->getPosts("Musik");
+//        dd($this->getCategories());
+        $this->getPosts("Bảng giá ô tô");
     }
 
     protected function getHtml(string $url): string
@@ -56,11 +54,12 @@ class Kenh14Crawler extends Command
         $home_html = $this->getHtml($this->home);
         $dom = new Crawler($home_html);
 
-        $categories = CrawlerHelper::extractAttributes($dom, ".kbh-menu-list > li a", ['text', 'href']);
+        $categories = CrawlerHelper::extractAttributes($dom, ".nf-menu > li > .nf-submenu > li > a", ['text', 'href']);
 
 //        return array_map(function ($item) {
 //            return CrawlerHelper::makeFullUrl($this->home, $item['href']);
 //        }, $categories);
+
         return $categories;
     }
 
@@ -69,24 +68,33 @@ class Kenh14Crawler extends Command
         $post_url = $this->getHtml($url);
         $dom = new Crawler($post_url);
 
-        $category = $dom->filter(".kbh-menu-list > .active > a")->text();
-        $tags = CrawlerHelper::extractAttributes($dom, ".klw-new-tags > .knt-list > li > a", ['text', 'href']);
-        $title = $dom->filter(".kbwc-title")->text();
-        $contents = $dom->filter(".knc-content")->html();
+        $category = $dom->filter(".breadcrumbs > li:last-child > a")->text();
+        $tags = CrawlerHelper::extractAttributes($dom, ".tags-wrap > li > a", ['text', 'href']);
+        $title = $dom->filter(".singular-container > .title-page")->text();
+        $description = $dom->filter(".singular-container > .singular-sapo")->text();
+        $contents = $dom->filter(".singular-container > .singular-content")->html();
 
-        dd(Str::slug($category));
+        dd($description);
     }
 
     protected function getPosts(string $category)
     {
         $categories = $this->getCategories();
-        $category_url = CrawlerHelper::getUrl($this->home, $category, $categories);
+        try {
+            $category_url = CrawlerHelper::getUrl($this->home, $category, $categories);
+        } catch (TypeErrorException $exception) {
+            return "Message: " . $exception->getMessage();
+        }
 
         $html = $this->getHtml($category_url);
         $dom = new Crawler($html);
 
-        $posts = CrawlerHelper::extractAttributes($dom, ".knswli-title > a", ["text", "href"]);
-
+        $posts = CrawlerHelper::extractAttributes($dom, ".article > .article-item > .article-content > .article-title > a", ["text", "href"]);
         dd($posts);
+    }
+
+    protected function getPaginates()
+    {
+
     }
 }
