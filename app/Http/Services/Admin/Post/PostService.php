@@ -2,14 +2,18 @@
 namespace App\Http\Services\Admin\Post;
 
 use App\Enums\PostStatus;
+use App\Http\Services\Admin\Category\CategoryService;
 use App\Http\Services\Admin\PostTag\PostTagService;
+use App\Models\Category;
 use App\Models\Post;
 use App\Models\PostTag;
+use App\Models\Tag;
 use BenSampo\Enum\Enum;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
+use function PHPUnit\Framework\at;
 
 class PostService
 {
@@ -56,6 +60,56 @@ class PostService
         $post->status = $status;
         $post->save();
         PostTagService::insert($post->id, $tag_id);
+    }
+
+    public static function createCrawPost(array $attributes)
+    {
+        $cate_check = Category::where("name", $attributes[4])->first();
+        if ($cate_check == null) {
+            $category = new Category();
+            $category->name = $attributes[4];
+            $category->slug = \Str::slug($attributes[4]);
+            $category->save();
+        } else {
+            $category_id = $cate_check->id;
+        };
+
+        $tag_id = [];
+        foreach ($attributes[5] as $item) {
+            $tag_check = Tag::where("name", $item['text'])->first();
+            if ($tag_check == null) {
+                $tag = new Tag();
+                $tag->name = $item['text'];
+                $tag->slug = \Str::slug($item['text']);
+                $tag->save();
+                array_push($tag_id, $tag->id);
+            } else {
+                array_push($tag_id, $tag_check->id);
+            }
+        }
+
+        $post = new Post();
+        $post->title = $attributes[0];
+        $post->slug = \Str::slug($attributes[0]);
+        $post->description = $attributes[1];
+        $post->content = $attributes[2];
+        $post->thumbnail = $attributes[3];
+        $post->category_id = $category_id;
+        $post->save();
+
+        foreach ($tag_id as $item) {
+            $post_tag = PostTag::updateOrCreate(
+                [
+                    "post_id" => $post->id,
+                    "tag_id" => $item
+                ],
+                [
+                    "post_id" => $post->id,
+                    "tag_id" => $item,
+                ]
+            );
+        }
+
     }
 
     public static function getPosts()

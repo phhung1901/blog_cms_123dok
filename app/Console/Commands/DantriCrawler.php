@@ -2,6 +2,7 @@
 
 namespace App\Console\Commands;
 
+use App\Http\Services\Admin\Post\PostService;
 use App\Libs\CrawlerHelper;
 use GuzzleHttp\Client;
 use Illuminate\Console\Command;
@@ -34,16 +35,25 @@ class DantriCrawler extends Command
 
     public function handle()
     {
+        $data_post = $this->getPost("https://dantri.com.vn/kinh-doanh/khong-co-nguoi-mua-sieu-xe-rolls-royce-cua-ong-trinh-van-quyet-bi-ha-gia-20221024155906013.htm");
+        PostService::createCrawPost($data_post);
+
+
         $categories = $this->getCategories();
 
         foreach ($categories as $category) {
             echo $category["text"] . "\n";
-            $posts = $this->getPosts($category["text"]);
-            foreach ($posts as $post) {
+            try {
+                $posts = $this->getPosts($category["text"]);
+            } catch (\Exception $e) {
+                continue;
+            }
+            foreach ($posts[0] as $post) {
                 try {
                     $url = CrawlerHelper::makeFullUrl($this->home, $post["href"]);
                     $this->info("Crawing url: " . $url);
-                    $this->getPost($url);
+                    PostService::createCrawPost($this->getPost($url));
+                    $this->info("Done !");
                 } catch (\Exception $e) {
                     continue;
                 }
@@ -69,10 +79,6 @@ class DantriCrawler extends Command
 
         $categories = CrawlerHelper::extractAttributes($dom, ".nf-menu > li > .nf-submenu > li > a", ['text', 'href']);
 
-//        return array_map(function ($item) {
-//            return CrawlerHelper::makeFullUrl($this->home, $item['href']);
-//        }, $categories);
-
         return $categories;
     }
 
@@ -82,12 +88,13 @@ class DantriCrawler extends Command
         $dom = new Crawler($post_url);
 
         $category = $dom->filter(".breadcrumbs > li:last-child > a")->text();
-        $tags = CrawlerHelper::extractAttributes($dom, ".tags-wrap > li > a", ['text', 'href']);
+        $tags = CrawlerHelper::extractAttributes($dom, ".tags-wrap > li > a", ['text']);
         $title = $dom->filter(".singular-container > .title-page")->text();
         $description = $dom->filter(".singular-container > .singular-sapo")->text();
         $contents = $dom->filter(".singular-container > .singular-content")->html();
+        $thumb = $dom->filter(".singular-container > .singular-content > .image > img")->attr("src");
 
-//        dd($description);
+        return [$title, $description, $contents, $thumb, $category, $tags];
     }
 
     protected function getPosts(string $category)
@@ -99,8 +106,7 @@ class DantriCrawler extends Command
         $dom = new Crawler($html);
 
         $posts = CrawlerHelper::extractAttributes($dom, ".article > .article-item > .article-content > .article-title > a", ["text", "href"]);
-//        dd($posts);
-        return $posts;
+        return [$posts];
     }
 
     protected function getPaginates()

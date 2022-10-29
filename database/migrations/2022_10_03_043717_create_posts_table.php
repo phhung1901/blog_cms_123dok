@@ -20,8 +20,8 @@ return new class extends Migration
             $table->longText("content");
             $table->string("thumbnail")->nullable();
             $table->unsignedBigInteger("category_id")->index();
-            $table->unsignedBigInteger("author_id")->index();
-            $table->string("status")->index();
+            $table->unsignedBigInteger("author_id")->index()->nullable();
+            $table->string("status")->index()->default("publish");
             $table->timestamps();
         });
     }

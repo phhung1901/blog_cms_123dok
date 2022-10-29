@@ -41,11 +41,13 @@ class CategoryService{
         $category->name = $request->get("category_name");
         $category->slug = $request->get("slug");
         $category->description = $request->get("description");
-        if ($request->get("parent_id") != "0"){
+        if ($request->get("parent_id") != "0") {
             $category->parent_id = $request->get("parent_id");
         }
 
         $category->save();
+
+        dd($category->id);
     }
 
     public function update(Request $request, $id): Void

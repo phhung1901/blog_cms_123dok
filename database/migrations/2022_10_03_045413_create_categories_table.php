@@ -18,7 +18,7 @@ return new class extends Migration
             $table->integer("parent_id")->nullable()->index();
             $table->string("name");
             $table->string("slug")->index();
-            $table->string("description");
+            $table->string("description")->nullable();
             $table->timestamps();
         });
     }
