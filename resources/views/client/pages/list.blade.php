@@ -49,10 +49,17 @@
                                             $path = $post['thumbnail'];
                                             $path = trim($path, "public");
                                         @endphp
-                                        <a href="{{route("user.detail.post", [$post['slug']])}}"><img id="img_post"
-                                                                                                      src="{{asset('storage'.$path)}}"
-                                                                                                      alt=""></a>
-                                        <img id="save_post" src="/asset/images/Vector.png" alt="">
+                                        @if(parse_url($path, PHP_URL_SCHEME) == 'https')
+                                            <a href="{{route("user.detail.post", [$post['slug']])}}"><img id="img_post"
+                                                                                                          src="{{$path}}"
+                                                                                                          alt=""></a>
+                                            <img id="save_post" src="/asset/images/Vector.png" alt="">
+                                        @else
+                                            <a href="{{route("user.detail.post", [$post['slug']])}}"><img id="img_post"
+                                                                                                          src="{{asset('storage'.$path)}}"
+                                                                                                          alt=""></a>
+                                            <img id="save_post" src="/asset/images/Vector.png" alt="">
+                                        @endif
                                     </div>
                                     <div class="detail_blog">
                                         <div class="post_title">
@@ -61,7 +68,9 @@
                                         <div class="post_detail">
                                             <span class="categories_post">{{$post["category"]}}</span>
                                             &bull;
-                                            <span class="user_post">{{$post["user"]}}</span>
+                                            <span class="user_post">@if(isset($post['user']))
+                                                    {{$post["user"]}}
+                                                @endif</span>
                                             &bull;
                                             <span class="date_post">
                                                 @php

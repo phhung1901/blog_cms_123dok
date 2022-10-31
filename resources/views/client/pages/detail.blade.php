@@ -20,7 +20,9 @@
                     <div class="post_detail">
                         <span class="categories_post">{{$post["category"]}}</span>
                         &bull;
-                        <span class="user_post">{{$post["user"]}}</span>
+                        <span class="user_post">@if(isset($post['user']))
+                                {{$post["user"]}}
+                            @endif</span>
                         &bull;
                         <span class="date_post">
                             @php
@@ -47,7 +49,11 @@
                     </div>
                 </div>
                 <div class="banner_post">
-                    <img src="{{\Illuminate\Support\Facades\Storage::url($post['thumbnail'])}}" alt="">
+                    @if(parse_url($post['thumbnail'], PHP_URL_SCHEME) == "https")
+                        <img src="{{$post['thumbnail']}}" alt="">
+                    @else
+                        <img src="{{\Illuminate\Support\Facades\Storage::url($post['thumbnail'])}}" alt="">
+                    @endif
                 </div>
                 <div class="content_post">
                     {!! $post["content"] !!}
@@ -78,7 +84,7 @@
                                     <div class="post_detail">
                                         <span class="categories_post">{{$item["category"]}}</span>
                                         &bull;
-                                        <span class="user_post">{{$item["user"]}}</span>
+                                        {{--                                        <span class="user_post">{{$item["user"]}}</span>--}}
                                         &bull;
                                         <span class="date_post">
                                             @php
@@ -91,9 +97,15 @@
                                 </div>
                                 <div class="blog">
                                     <div class="img_post">
-                                        <img id="img_post"
-                                             src="{{\Illuminate\Support\Facades\Storage::url($item['thumbnail'])}}"
-                                             alt="">
+                                        @if(parse_url($post['thumbnail'], PHP_URL_SCHEME) == "https")
+                                            <img id="img_post"
+                                                 src="{{$item['thumbnail']}}"
+                                                 alt="">
+                                        @else
+                                            <img id="img_post"
+                                                 src="{{\Illuminate\Support\Facades\Storage::url($item['thumbnail'])}}"
+                                                 alt="">
+                                        @endif
                                     </div>
                                     <div class="detail_blog">
                                         <div class="post_title">
@@ -102,7 +114,7 @@
                                         <div class="post_detail">
                                             <span class="categories_post">{{$item["category"]}}</span>
                                             &bull;
-                                            <span class="user_post">{{$item["user"]}}</span>
+                                            {{--                                            <span class="user_post">{{$item["user"]}}</span>--}}
                                             &bull;
                                             <span class="date_post">
                                                 @php

@@ -25,12 +25,6 @@ class PostController extends Controller
         ]);
     }
 
-    public function societyPost(){
-        return view("client.pages.xahoi", [
-            "title" => "Xã hội"
-        ]);
-    }
-
 
     public function create()
     {

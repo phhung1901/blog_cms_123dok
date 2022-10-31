@@ -42,7 +42,6 @@ class DantriCrawler extends Command
         $categories = $this->getCategories();
 
         foreach ($categories as $category) {
-            echo $category["text"] . "\n";
             try {
                 $posts = $this->getPosts($category["text"]);
             } catch (\Exception $e) {

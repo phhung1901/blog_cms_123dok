@@ -11,11 +11,4 @@
 
     <link rel="stylesheet" href="/asset/css/grid.css">
     <link rel="stylesheet" href="/asset/css/style.css">
-    <style>
-        .container .menu_body .btn_menu_body:first-child {
-            background-color: #007882;
-            border-radius: 36px;
-            color: #FFFFFF;
-        }
-    </style>
 </head>

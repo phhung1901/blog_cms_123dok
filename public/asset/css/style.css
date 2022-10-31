@@ -204,6 +204,11 @@
     width: 100%;
     display: flex;
     flex-direction: row;
+    overflow-x: auto;
+}
+
+.container .menu_body::-webkit-scrollbar {
+    display: none;
 }
 
 .container .menu_body .btn_menu_body {

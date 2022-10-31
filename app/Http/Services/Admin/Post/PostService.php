@@ -70,6 +70,7 @@ class PostService
             $category->name = $attributes[4];
             $category->slug = \Str::slug($attributes[4]);
             $category->save();
+            $category_id = $category->id;
         } else {
             $category_id = $cate_check->id;
         };
@@ -88,23 +89,29 @@ class PostService
             }
         }
 
-        $post = new Post();
-        $post->title = $attributes[0];
-        $post->slug = \Str::slug($attributes[0]);
-        $post->description = $attributes[1];
-        $post->content = $attributes[2];
-        $post->thumbnail = $attributes[3];
-        $post->category_id = $category_id;
-        $post->save();
+        $post_check = Post::where("title", $attributes[0])->first();
+        if ($post_check == null) {
+            $post = new Post();
+            $post->title = $attributes[0];
+            $post->slug = \Str::slug($attributes[0]);
+            $post->description = $attributes[1];
+            $post->content = $attributes[2];
+            $post->thumbnail = $attributes[3];
+            $post->category_id = $category_id;
+            $post->save();
+            $post_id = $post->id;
+        } else {
+            $post_id = $post_check->id;
+        }
 
         foreach ($tag_id as $item) {
             $post_tag = PostTag::updateOrCreate(
                 [
-                    "post_id" => $post->id,
+                    "post_id" => $post_id,
                     "tag_id" => $item
                 ],
                 [
-                    "post_id" => $post->id,
+                    "post_id" => $post_id,
                     "tag_id" => $item,
                 ]
             );
