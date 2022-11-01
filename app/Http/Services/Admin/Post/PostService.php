@@ -64,45 +64,43 @@ class PostService
 
     public static function createCrawPost(array $attributes)
     {
-        $cate_check = Category::where("name", $attributes[4])->first();
-        if ($cate_check == null) {
-            $category = new Category();
-            $category->name = $attributes[4];
-            $category->slug = \Str::slug($attributes[4]);
-            $category->save();
-            $category_id = $category->id;
-        } else {
-            $category_id = $cate_check->id;
-        };
+
+        $category = Category::firstOrCreate(
+            ["name" => $attributes["category"]],
+            [
+                "name" => $attributes["category"],
+                "slug" => \Str::slug($attributes["category"])
+            ]
+        );
+
+        $category_id = $category->id;
 
         $tag_id = [];
-        foreach ($attributes[5] as $item) {
-            $tag_check = Tag::where("name", $item['text'])->first();
-            if ($tag_check == null) {
-                $tag = new Tag();
-                $tag->name = $item['text'];
-                $tag->slug = \Str::slug($item['text']);
-                $tag->save();
-                array_push($tag_id, $tag->id);
-            } else {
-                array_push($tag_id, $tag_check->id);
-            }
+        foreach ($attributes["tags"] as $item) {
+            $tag = Tag::firstOrCreate(
+                ["name" => $item["text"]],
+                [
+                    "name" => $item["text"],
+                    "slug" => \Str::slug($item["text"])
+                ]
+            );
+            array_push($tag_id, $tag->id);
         }
 
-        $post_check = Post::where("title", $attributes[0])->first();
-        if ($post_check == null) {
-            $post = new Post();
-            $post->title = $attributes[0];
-            $post->slug = \Str::slug($attributes[0]);
-            $post->description = $attributes[1];
-            $post->content = $attributes[2];
-            $post->thumbnail = $attributes[3];
-            $post->category_id = $category_id;
-            $post->save();
-            $post_id = $post->id;
-        } else {
-            $post_id = $post_check->id;
-        }
+
+        $post = Post::firstOrCreate(
+            ["title" => $attributes["title"]],
+            [
+                "title" => $attributes["title"],
+                "slug" => \Str::slug($attributes["title"]),
+                "description" => $attributes["description"],
+                "content" => $attributes["contents"],
+                "thumbnail" => $attributes["thumb"],
+                "category_id" => $category_id,
+            ]
+        );
+        $post_id = $post->id;
+
 
         foreach ($tag_id as $item) {
             $post_tag = PostTag::updateOrCreate(

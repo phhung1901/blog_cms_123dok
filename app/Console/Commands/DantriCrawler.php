@@ -93,7 +93,14 @@ class DantriCrawler extends Command
         $contents = $dom->filter(".singular-container > .singular-content")->html();
         $thumb = $dom->filter(".singular-container > .singular-content > .image > img")->attr("src");
 
-        return [$title, $description, $contents, $thumb, $category, $tags];
+        return [
+            "title" => $title,
+            "description" => $description,
+            "contents" => $contents,
+            "thumb" => $thumb,
+            "category" => $category,
+            "tags" => $tags,
+        ];
     }
 
     protected function getPosts(string $category)
