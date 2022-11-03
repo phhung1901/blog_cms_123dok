@@ -100,10 +100,10 @@
                                                             @endforeach
                                                         </td>
                                                         <td>
-                                                            @php
-                                                                $user =\App\Http\Services\Admin\User\UserService::getUser($post["author_id"])->toArray();
-                                                            @endphp
-                                                            {{$user["name"]}}
+{{--                                                            @php--}}
+{{--                                                                $user =\App\Http\Services\Admin\User\UserService::getUser($post["author_id"])->toArray();--}}
+{{--                                                            @endphp--}}
+{{--                                                            {{$user["name"]}}--}}
                                                         </td>
                                                         <td>{{\App\Enums\PostStatus::getKey($post["status"])}}</td>
                                                         <td>{{$post["created_at"]}}</td>
