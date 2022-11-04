@@ -35,10 +35,6 @@ class DantriCrawler extends Command
 
     public function handle()
     {
-        $data_post = $this->getPost("https://dantri.com.vn/kinh-doanh/khong-co-nguoi-mua-sieu-xe-rolls-royce-cua-ong-trinh-van-quyet-bi-ha-gia-20221024155906013.htm");
-        PostService::createCrawPost($data_post);
-
-
         $categories = $this->getCategories();
 
         foreach ($categories as $category) {
