@@ -15,7 +15,8 @@
         "league/uri": "^6.8",
         "opcodesio/log-viewer": "^1.6",
         "spatie/laravel-permission": "^5.5",
-        "symfony/dom-crawler": "^6.1"
+        "symfony/dom-crawler": "^6.1",
+        "ylsideas/cockroachdb-laravel": "^1.1"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.7",

@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "109ac87083a6449694da2875993f6c51",
+    "content-hash": "7482896b5cc5398132e00277c6a0bdbc",
     "packages": [
         {
             "name": "bensampo/laravel-enum",
@@ -3717,6 +3717,66 @@
             "time": "2022-12-31T22:20:34+00:00"
         },
         {
+            "name": "spatie/laravel-package-tools",
+            "version": "1.14.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/spatie/laravel-package-tools.git",
+                "reference": "9964e65c318c30577ca1b91469f739d2b381359b"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/spatie/laravel-package-tools/zipball/9964e65c318c30577ca1b91469f739d2b381359b",
+                "reference": "9964e65c318c30577ca1b91469f739d2b381359b",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/contracts": "^9.28|^10.0",
+                "php": "^8.0"
+            },
+            "require-dev": {
+                "mockery/mockery": "^1.5",
+                "orchestra/testbench": "^7.7|^8.0",
+                "pestphp/pest": "^1.22",
+                "phpunit/phpunit": "^9.5.24",
+                "spatie/pest-plugin-test-time": "^1.1"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Spatie\\LaravelPackageTools\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Freek Van der Herten",
+                    "email": "freek@spatie.be",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Tools for creating Laravel packages",
+            "homepage": "https://github.com/spatie/laravel-package-tools",
+            "keywords": [
+                "laravel-package-tools",
+                "spatie"
+            ],
+            "support": {
+                "issues": "https://github.com/spatie/laravel-package-tools/issues",
+                "source": "https://github.com/spatie/laravel-package-tools/tree/1.14.0"
+            },
+            "funding": [
+                {
+                    "url": "https://github.com/spatie",
+                    "type": "github"
+                }
+            ],
+            "time": "2023-01-10T14:09:55+00:00"
+        },
+        {
             "name": "spatie/laravel-permission",
             "version": "5.7.0",
             "source": {
@@ -6331,6 +6391,83 @@
                 "source": "https://github.com/webmozarts/assert/tree/1.11.0"
             },
             "time": "2022-06-03T18:03:27+00:00"
+        },
+        {
+            "name": "ylsideas/cockroachdb-laravel",
+            "version": "v1.1.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/ylsideas/cockroachdb-laravel.git",
+                "reference": "98eaa34e337f4753105e860b8c81cb3dad4e3636"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/ylsideas/cockroachdb-laravel/zipball/98eaa34e337f4753105e860b8c81cb3dad4e3636",
+                "reference": "98eaa34e337f4753105e860b8c81cb3dad4e3636",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/contracts": "9.*|8.*",
+                "php": "^8.0",
+                "spatie/laravel-package-tools": "^1.9.2"
+            },
+            "require-dev": {
+                "doctrine/dbal": "^3.2",
+                "laravel/pint": "^1.2",
+                "nunomaduro/collision": "^6.0|^5.10",
+                "nunomaduro/larastan": "^1.0",
+                "orchestra/testbench": "^7.0|^6.24",
+                "pestphp/pest": "^1.21",
+                "pestphp/pest-plugin-laravel": "^1.1",
+                "phpstan/extension-installer": "^1.1",
+                "phpstan/phpstan-deprecation-rules": "^1.0",
+                "phpstan/phpstan-phpunit": "^1.0",
+                "phpunit/phpunit": "^9.5",
+                "rector/rector": "^0.14.2",
+                "spatie/laravel-ray": "^1.26"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "YlsIdeas\\CockroachDb\\CockroachDbServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "YlsIdeas\\CockroachDb\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Peter Fox",
+                    "email": "peter.fox@ylsideas.co",
+                    "role": "Developer"
+                }
+            ],
+            "description": "This is my package cockroachdb-laravel",
+            "homepage": "https://github.com/ylsideas/cockroachdb-laravel",
+            "keywords": [
+                "cockroachdb-laravel",
+                "laravel",
+                "ylsideas"
+            ],
+            "support": {
+                "issues": "https://github.com/ylsideas/cockroachdb-laravel/issues",
+                "source": "https://github.com/ylsideas/cockroachdb-laravel/tree/v1.1.1"
+            },
+            "funding": [
+                {
+                    "url": "https://github.com/peterfox",
+                    "type": "github"
+                }
+            ],
+            "time": "2022-10-05T21:27:04+00:00"
         }
     ],
     "packages-dev": [

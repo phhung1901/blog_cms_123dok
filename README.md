@@ -17,3 +17,6 @@
 - [ ] Command lấy các bài viết mới nhất của một trang báo/blog bất kỳ (setup chạy hàng ngày)
 - [ ] Search (sử dụng elasticsearch)
 - [ ] Tìm hiểu kiển thức cơ bản về SEO, thêm vào trang của mình
+
+
+pass cloud cockroachDB: UUOCceazo8pCkH5sxmb0AA
