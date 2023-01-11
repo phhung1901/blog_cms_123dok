@@ -43,7 +43,7 @@ class DantriCrawler extends Command
             } catch (\Exception $e) {
                 continue;
             }
-            foreach ($posts[0] as $post) {
+            foreach ($posts as $post) {
                 try {
                     $url = CrawlerHelper::makeFullUrl($this->home, $post["href"]);
                     $this->info("Crawing url: " . $url);
@@ -108,7 +108,7 @@ class DantriCrawler extends Command
         $dom = new Crawler($html);
 
         $posts = CrawlerHelper::extractAttributes($dom, ".article > .article-item > .article-content > .article-title > a", ["text", "href"]);
-        return [$posts];
+        return $posts;
     }
 
     protected function getPaginates()

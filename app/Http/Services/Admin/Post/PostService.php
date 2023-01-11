@@ -47,7 +47,6 @@ class PostService
         $status = $request->get("status");
         $status = PostStatus::getValue($status);
 
-//        dd($description);
 
         $post = new Post();
         $post->title = $title;
